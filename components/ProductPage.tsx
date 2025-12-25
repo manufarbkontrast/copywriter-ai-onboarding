@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ProductType } from '../types';
 
 interface Props {
@@ -7,6 +7,10 @@ interface Props {
 
 const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
   const [selectedProduct, setSelectedProduct] = useState<ProductType>('');
+  const [scrollY, setScrollY] = useState(0);
+  const [heroOpacity, setHeroOpacity] = useState(1);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const heroRef = useRef<HTMLElement>(null);
 
   // SVG Icons für die Produkte
   const PhoneIcon = () => (
@@ -114,25 +118,111 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
     }
   };
 
+  // Scroll-Effekt für Hero-Section
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setScrollY(currentScrollY);
+      
+      // Fade-out Effekt basierend auf Scroll-Position
+      const heroHeight = heroRef.current?.offsetHeight || window.innerHeight;
+      const opacity = Math.max(0, 1 - (currentScrollY / heroHeight) * 1.5);
+      setHeroOpacity(opacity);
+      
+      // Scroll-Progress berechnen
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = totalHeight > 0 ? (currentScrollY / totalHeight) * 100 : 0;
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial call
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="bg-white">
-      {/* Große Hero Section */}
-      <section className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 relative">
-        <div className="text-center max-w-5xl mx-auto animate-fade-in">
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-light text-black mb-8 md:mb-12 tracking-tight leading-none">
+      {/* Scroll Progress Indicator */}
+      <div className="fixed top-0 left-0 right-0 h-1 bg-gray-100 z-50">
+        <div 
+          className="h-full bg-black transition-all duration-150 ease-out"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
+
+      {/* Große Hero Section mit Scroll-Effekten */}
+      <section 
+        ref={heroRef}
+        className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+        style={{
+          opacity: heroOpacity,
+          transform: `translateY(${scrollY * 0.3}px)`,
+          transition: 'opacity 0.1s ease-out'
+        }}
+      >
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div 
+            className="absolute top-1/4 left-1/4 w-96 h-96 bg-gray-100 rounded-full blur-3xl opacity-20"
+            style={{
+              transform: `translate(${scrollY * 0.1}px, ${scrollY * 0.15}px) scale(${1 + scrollY * 0.0001})`
+            }}
+          />
+          <div 
+            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gray-100 rounded-full blur-3xl opacity-20"
+            style={{
+              transform: `translate(${-scrollY * 0.1}px, ${-scrollY * 0.15}px) scale(${1 + scrollY * 0.0001})`
+            }}
+          />
+        </div>
+
+        <div 
+          className="text-center max-w-5xl mx-auto animate-fade-in relative z-10"
+          style={{
+            transform: `translateY(${-scrollY * 0.2}px)`,
+            transition: 'transform 0.1s ease-out'
+          }}
+        >
+          <h1 
+            className="text-6xl md:text-8xl lg:text-9xl font-light text-black mb-8 md:mb-12 tracking-tight leading-none"
+            style={{
+              transform: `scale(${1 - scrollY * 0.0003})`,
+              textShadow: scrollY > 50 ? '0 2px 20px rgba(0,0,0,0.1)' : 'none',
+              transition: 'all 0.1s ease-out'
+            }}
+          >
             FORCE4GOOD
           </h1>
-          <p className="text-xl md:text-2xl lg:text-3xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-12 md:mb-16 font-light">
+          <p 
+            className="text-xl md:text-2xl lg:text-3xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-12 md:mb-16 font-light"
+            style={{
+              transform: `translateY(${scrollY * 0.1}px)`,
+              opacity: Math.max(0, 1 - scrollY * 0.002),
+              transition: 'all 0.1s ease-out'
+            }}
+          >
             Innovative KI-Lösungen, die Ihr Unternehmen voranbringen
           </p>
-          <p className="text-base md:text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed mb-12 md:mb-16">
+          <p 
+            className="text-base md:text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed mb-12 md:mb-16"
+            style={{
+              transform: `translateY(${scrollY * 0.15}px)`,
+              opacity: Math.max(0, 1 - scrollY * 0.003),
+              transition: 'all 0.1s ease-out'
+            }}
+          >
             Wählen Sie eine Lösung aus und starten Sie Ihr individuelles Onboarding
           </p>
           
           {/* Scroll Indicator */}
           <button
             onClick={scrollToProducts}
-            className="group flex flex-col items-center gap-2 text-gray-400 hover:text-black transition-colors duration-300 animate-gentle-bounce"
+            className="group flex flex-col items-center gap-2 text-gray-400 hover:text-black transition-colors duration-300 animate-gentle-bounce relative z-10"
+            style={{
+              opacity: Math.max(0, 1 - scrollY * 0.005),
+              transform: `translateY(${scrollY * 0.2}px)`,
+              transition: 'all 0.1s ease-out'
+            }}
             aria-label="Zu den Produkten scrollen"
           >
             <span className="text-sm uppercase tracking-widest font-light">Produkte entdecken</span>
