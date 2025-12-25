@@ -126,7 +126,7 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
       
       // Fade-out Effekt basierend auf Scroll-Position
       const heroHeight = heroRef.current?.offsetHeight || window.innerHeight;
-      const opacity = Math.max(0, 1 - (currentScrollY / heroHeight) * 1.5);
+      const opacity = Math.max(0, 1 - (currentScrollY / heroHeight) * 1.2);
       setHeroOpacity(opacity);
       
       // Scroll-Progress berechnen
@@ -156,22 +156,21 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
         className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden"
         style={{
           opacity: heroOpacity,
-          transform: `translateY(${scrollY * 0.3}px)`,
-          transition: 'opacity 0.1s ease-out'
+          transform: `translateY(${scrollY * 0.5}px)`,
         }}
       >
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div 
-            className="absolute top-1/4 left-1/4 w-96 h-96 bg-gray-100 rounded-full blur-3xl opacity-20"
+            className="absolute top-1/4 left-1/4 w-96 h-96 bg-gray-100 rounded-full blur-3xl opacity-30"
             style={{
-              transform: `translate(${scrollY * 0.1}px, ${scrollY * 0.15}px) scale(${1 + scrollY * 0.0001})`
+              transform: `translate(${scrollY * 0.3}px, ${scrollY * 0.4}px) scale(${1 + scrollY * 0.0003})`
             }}
           />
           <div 
-            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gray-100 rounded-full blur-3xl opacity-20"
+            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gray-100 rounded-full blur-3xl opacity-30"
             style={{
-              transform: `translate(${-scrollY * 0.1}px, ${-scrollY * 0.15}px) scale(${1 + scrollY * 0.0001})`
+              transform: `translate(${-scrollY * 0.3}px, ${-scrollY * 0.4}px) scale(${1 + scrollY * 0.0003})`
             }}
           />
         </div>
@@ -179,16 +178,15 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
         <div 
           className="text-center max-w-5xl mx-auto animate-fade-in relative z-10"
           style={{
-            transform: `translateY(${-scrollY * 0.2}px)`,
-            transition: 'transform 0.1s ease-out'
+            transform: `translateY(${-scrollY * 0.4}px)`,
           }}
         >
           <h1 
             className="text-6xl md:text-8xl lg:text-9xl font-light text-black mb-8 md:mb-12 tracking-tight leading-none"
             style={{
-              transform: `scale(${1 - scrollY * 0.0003})`,
-              textShadow: scrollY > 50 ? '0 2px 20px rgba(0,0,0,0.1)' : 'none',
-              transition: 'all 0.1s ease-out'
+              transform: `scale(${Math.max(0.7, 1 - scrollY * 0.0008)}) translateY(${scrollY * 0.1}px)`,
+              textShadow: scrollY > 30 ? '0 4px 30px rgba(0,0,0,0.15)' : 'none',
+              opacity: Math.max(0.3, 1 - scrollY * 0.0015),
             }}
           >
             FORCE4GOOD
@@ -196,9 +194,8 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
           <p 
             className="text-xl md:text-2xl lg:text-3xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-12 md:mb-16 font-light"
             style={{
-              transform: `translateY(${scrollY * 0.1}px)`,
-              opacity: Math.max(0, 1 - scrollY * 0.002),
-              transition: 'all 0.1s ease-out'
+              transform: `translateY(${scrollY * 0.2}px)`,
+              opacity: Math.max(0, 1 - scrollY * 0.003),
             }}
           >
             Innovative KI-Lösungen, die Ihr Unternehmen voranbringen
@@ -206,9 +203,8 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
           <p 
             className="text-base md:text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed mb-12 md:mb-16"
             style={{
-              transform: `translateY(${scrollY * 0.15}px)`,
-              opacity: Math.max(0, 1 - scrollY * 0.003),
-              transition: 'all 0.1s ease-out'
+              transform: `translateY(${scrollY * 0.25}px)`,
+              opacity: Math.max(0, 1 - scrollY * 0.004),
             }}
           >
             Wählen Sie eine Lösung aus und starten Sie Ihr individuelles Onboarding
@@ -219,9 +215,8 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
             onClick={scrollToProducts}
             className="group flex flex-col items-center gap-2 text-gray-400 hover:text-black transition-colors duration-300 animate-gentle-bounce relative z-10"
             style={{
-              opacity: Math.max(0, 1 - scrollY * 0.005),
-              transform: `translateY(${scrollY * 0.2}px)`,
-              transition: 'all 0.1s ease-out'
+              opacity: Math.max(0, 1 - scrollY * 0.008),
+              transform: `translateY(${scrollY * 0.3}px)`,
             }}
             aria-label="Zu den Produkten scrollen"
           >
