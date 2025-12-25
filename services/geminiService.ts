@@ -3,7 +3,7 @@ import { OnboardingData, AnalysisResult } from "../types";
 
 const SYSTEM_INSTRUCTION = `
 # ROLLE:
-Du bist ein Weltklasse-Conversion-Copywriter und Strategie-Berater. 
+Du bist ein Weltklasse-Conversion-Strategie-Berater von Force4Good. 
 Deine Aufgabe ist es, rohe Antworten aus einem Kunden-Onboarding zu 
 analysieren und daraus ein präzises "Marketing-Psychologie-Profil" 
 zu erstellen.
@@ -53,7 +53,7 @@ const RESPONSE_SCHEMA: Schema = {
     },
     copywriter_notes: {
       type: Type.STRING,
-      description: "Wo war der Kunde unklar? Welche Fragen muss der Copywriter im Kick-off-Call noch stellen?",
+      description: "Wo war der Kunde unklar? Welche Fragen muss das Force4Good Team im Kick-off-Call noch stellen?",
     },
   },
   required: ["summary", "avatar_psychogram", "big_idea_hook", "unique_mechanism_name", "story_arc", "emotional_triggers", "copywriter_notes"],

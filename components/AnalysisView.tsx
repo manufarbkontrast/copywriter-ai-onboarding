@@ -140,9 +140,9 @@ const AnalysisView: React.FC<Props> = ({ result, contactData, onReset }) => {
           </ul>
         </div>
 
-        {/* Copywriter Notes */}
+        {/* Force4Good Notes */}
         <div className="bg-gray-50 border border-gray-200 rounded-sm p-6">
-          <h3 className="text-gray-500 uppercase text-xs font-light tracking-widest mb-5">Notizen für den Copywriter</h3>
+          <h3 className="text-gray-500 uppercase text-xs font-light tracking-widest mb-5">Notizen für Force4Good</h3>
           <p className="text-gray-700 font-light italic leading-relaxed">
             {result.copywriter_notes}
           </p>
