@@ -1,0 +1,5 @@
+{
+  "name": "FORCE4GOOD Onboarding",
+  "description": "A deep-dive client onboarding tool that uses Gemini to generate a Marketing-Psychology Profile based on the Storybrand and Cialdini frameworks.",
+  "requestFramePermissions": []
+}

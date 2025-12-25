@@ -1,0 +1,213 @@
+{
+  "name": "FORCE4GOOD Onboarding Webhook",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "d194ad47-6e11-42df-93ce-bd789bf55cbd",
+        "options": {}
+      },
+      "id": "d96c1c7c-13dd-433f-89f7-2320b23ddc82",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        560,
+        -128
+      ],
+      "webhookId": "d194ad47-6e11-42df-93ce-bd789bf55cbd"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { success: true, message: 'Daten erfolgreich empfangen' } }}",
+        "options": {}
+      },
+      "id": "3e5c922a-da56-4c07-b5a7-cc5e696ddefc",
+      "name": "Antwort senden",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1216,
+        -128
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.item.json.body;\nconst answers = body.answers || {};\nconst selectedProduct = body.selected_product || '';\n\n// Hilfsfunktion: Filtert leere Werte und verbindet sie mit |\nconst joinNonEmpty = (values) => {\n  return values.filter(v => v && String(v).trim() !== '').join(' | ');\n};\n\n// Kontakt-Felder\nconst kontakt = joinNonEmpty([\n  body.contact?.name,\n  body.contact?.email,\n  body.contact?.phone,\n  body.contact?.address,\n  body.contact?.website,\n  body.contact?.social_media\n]);\n\n// Produkt & Firma\nconst produktFirma = joinNonEmpty([\n  selectedProduct,\n  answers.branche,\n  answers.unternehmensgroesse\n]);\n\n// Herausforderungen\nconst herausforderungen = joinNonEmpty([\n  answers.herausforderung,\n  answers.ausloeser,\n  answers.bisherige_versuche\n]);\n\n// Erwartungen & Problem\nconst erwartungenProblem = joinNonEmpty([\n  answers.zeitrahmen,\n  answers.problem_beschreibung\n]);\n\nconst bedenken = answers.bedenken || '';\n\n// Produkt-spezifische Felder\nlet telefonAgentDetails = '';\nlet chatbotDetails = '';\nlet websiteDetails = '';\n\nif (selectedProduct === 'phone-agent') {\n  telefonAgentDetails = joinNonEmpty([\n    answers.phone_agent_anrufvolumen,\n    answers.phone_agent_spitzenzeiten,\n    answers.phone_agent_haeufige_fragen,\n    answers.phone_agent_aktueller_prozess,\n    answers.phone_agent_erwartete_ergebnisse,\n    answers.phone_agent_aktuelle_systeme\n  ]);\n} else if (selectedProduct === 'chatbot') {\n  chatbotDetails = joinNonEmpty([\n    answers.chatbot_onboarding_dauer,\n    answers.chatbot_neue_mitarbeiter_pro_jahr,\n    answers.chatbot_onboarding_themen,\n    answers.chatbot_aktueller_prozess,\n    answers.chatbot_herausforderungen,\n    answers.chatbot_erwartete_vorteile\n  ]);\n} else if (selectedProduct === 'website') {\n  websiteDetails = joinNonEmpty([\n    answers.website_typ,\n    answers.website_ziele,\n    answers.website_zielgruppe,\n    answers.website_aktuelle_online_praesenz\n  ]);\n}\n\nreturn {\n  json: {\n    body: body,\n    Kontakt: kontakt,\n    'Produkt & Firma': produktFirma,\n    Herausforderungen: herausforderungen,\n    'Erwartungen & Problem': erwartungenProblem,\n    Bedenken: bedenken,\n    'Telefon Agent Details': telefonAgentDetails,\n    'Chatbot Details': chatbotDetails,\n    'Website Details': websiteDetails\n  }\n};"
+      },
+      "id": "24fd6656-9abb-453c-b15c-a4a67a93798d",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        768,
+        -128
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1UAEfq0p-goII8hod18qMKLTA6sYPdyA_Fdti_mJyBPQ",
+          "mode": "list",
+          "cachedResultName": "Onboaarding",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1UAEfq0p-goII8hod18qMKLTA6sYPdyA_Fdti_mJyBPQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Onboarding",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1UAEfq0p-goII8hod18qMKLTA6sYPdyA_Fdti_mJyBPQ/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Kontakt": "={{ $json.Kontakt || '' }}",
+            "Firma": "={{ $json.body.answers.branche || '' }} {{ $json.body.answers.unternehmensgroesse || '' }}",
+            "Herausforderungen": "={{ $json.Herausforderungen || '' }}",
+            "Lösungen": "",
+            "Lösungstyp": "",
+            "Bedenken": "={{ $json.Bedenken || '' }}",
+            "Erster Schritt": "",
+            "Produkt & Firma": "={{ $json['Produkt & Firma'] || '' }}",
+            "Erwartungen & Problem": "={{ $json['Erwartungen & Problem'] || '' }}",
+            "Telefon Agent Details": "={{ $json['Telefon Agent Details'] || '' }}",
+            "Chatbot Details": "={{ $json['Chatbot Details'] || '' }}",
+            "Website Details": "={{ $json['Website Details'] || '' }}"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1008,
+        -128
+      ],
+      "id": "1b742b53-b222-46f5-a841-cd2796bcbd59",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zISlUzp2C4PMOsqQ",
+          "name": "Sheets Force4Good"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.crftn.de",
+            "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Cursor/2.1.47 Chrome/138.0.7204.251 Electron/37.7.0 Safari/537.36",
+            "content-length": "756",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "de",
+            "content-type": "application/json",
+            "origin": "http://localhost:3000",
+            "priority": "u=1, i",
+            "referer": "http://localhost:3000/",
+            "sec-ch-ua": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"macOS\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "via": "2.0 Caddy",
+            "x-forwarded-for": "109.42.50.87",
+            "x-forwarded-host": "n8n.crftn.de",
+            "x-forwarded-proto": "https"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "contact": {
+              "name": "test",
+              "email": "",
+              "phone": "",
+              "address": "",
+              "website": "",
+              "social_media": ""
+            },
+            "selected_product": "phone-agent",
+            "answers": {
+              "branche": "Physiotherapie",
+              "unternehmensgroesse": "11-50 Mitarbeiter",
+              "herausforderung": "Verpasste Anrufe außerhalb der Geschäftszeiten, Lange Wartezeiten für Kunden",
+              "ausloeser": "Wachstum erfordert Automatisierung, Kosten müssen reduziert werden",
+              "bisherige_versuche": "Noch keine Erfahrung mit KI",
+              "zeitrahmen": "Innerhalb 1 Monat",
+              "problem_beschreibung": "Wir erhalten viele Anrufe außerhalb der Geschäftszeiten und können diese nicht bearbeiten.",
+              "bedenken": "Zu teuer / ROI unklar, Daten-Sicherheit & Datenschutz",
+              "phone_agent_anrufvolumen": "50-200 Anrufe",
+              "phone_agent_spitzenzeiten": "Vormittags (9-12 Uhr), Nachmittags (14-18 Uhr)",
+              "phone_agent_haeufige_fragen": "Öffnungszeiten, Preise, Terminvereinbarung",
+              "phone_agent_aktueller_prozess": "Nur während Geschäftszeiten",
+              "phone_agent_erwartete_ergebnisse": "24/7 Erreichbarkeit, Terminvereinbarungen automatisieren",
+              "phone_agent_aktuelle_systeme": "Kalendersystem, Buchungssystem"
+            },
+            "metadata": {
+              "timestamp": "2025-12-07T13:15:53.531Z",
+              "source": "force4good-onboarding",
+              "version": "1.0"
+            }
+          },
+          "webhookUrl": "https://n8n.crftn.de/webhook/d194ad47-6e11-42df-93ce-bd789bf55cbd",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Antwort senden",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "bc8577da-066d-475e-820e-1b3d64d29e8d",
+  "meta": {
+    "instanceId": "3749ac70d999460e96490de324c8a2b2362684fccc2999145d1b8bdd7b2b5561"
+  },
+  "id": "VTJU9FC64SenuFZv",
+  "tags": []
+}

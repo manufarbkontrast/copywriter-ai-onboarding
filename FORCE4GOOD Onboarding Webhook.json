@@ -1,0 +1,149 @@
+{
+  "name": "FORCE4GOOD Onboarding Webhook",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "d194ad47-6e11-42df-93ce-bd789bf55cbd",
+        "options": {}
+      },
+      "id": "f0db3cdc-7668-4363-ad58-74464eade852",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        64,
+        48
+      ],
+      "webhookId": "d194ad47-6e11-42df-93ce-bd789bf55cbd"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.item.json.body;\nconst answers = body.answers || {};\nconst selectedProduct = body.selected_product || '';\n\n// Hilfsfunktion: Filtert leere Werte und verbindet sie mit |\nconst joinNonEmpty = (values) => {\n  return values.filter(v => v && v.trim() !== '').join(' | ');\n};\n\n// Kontakt-Felder (separat für bessere Lesbarkeit, aber optional zusammengefügt)\nconst kontaktName = body.contact?.name || '';\nconst kontaktEmail = body.contact?.email || '';\nconst kontaktPhone = body.contact?.phone || '';\nconst kontaktAddress = body.contact?.address || '';\nconst kontaktWebsite = body.contact?.website || '';\nconst kontaktSocialMedia = body.contact?.social_media || '';\nconst kontakt = joinNonEmpty([kontaktName, kontaktEmail, kontaktPhone, kontaktAddress, kontaktWebsite, kontaktSocialMedia]);\n\n// Produkt & Firma\nconst produkt = selectedProduct || '';\nconst branche = answers.branche || '';\nconst unternehmensgroesse = answers.unternehmensgroesse || '';\nconst produktFirma = joinNonEmpty([produkt, branche, unternehmensgroesse]);\nconst firma = joinNonEmpty([branche, unternehmensgroesse]);\n\n// Herausforderungen\nconst herausforderung = answers.herausforderung || '';\nconst ausloeser = answers.ausloeser || '';\nconst bisherigeVersuche = answers.bisherige_versuche || '';\nconst herausforderungen = joinNonEmpty([herausforderung, ausloeser, bisherigeVersuche]);\n\n// Erwartungen & Problem\nconst zeitrahmen = answers.zeitrahmen || '';\nconst problemBeschreibung = answers.problem_beschreibung || '';\nconst erwartungenProblem = joinNonEmpty([zeitrahmen, problemBeschreibung]);\n\nconst bedenken = answers.bedenken || '';\n\n// Produkt-spezifische Felder\nlet telefonAgentDetails = '';\nlet chatbotDetails = '';\nlet websiteDetails = '';\n\nif (selectedProduct === 'phone-agent') {\n  telefonAgentDetails = joinNonEmpty([\n    answers.phone_agent_anrufvolumen || '',\n    answers.phone_agent_spitzenzeiten || '',\n    answers.phone_agent_haeufige_fragen || '',\n    answers.phone_agent_aktueller_prozess || '',\n    answers.phone_agent_erwartete_ergebnisse || '',\n    answers.phone_agent_aktuelle_systeme || ''\n  ]);\n} else if (selectedProduct === 'chatbot') {\n  chatbotDetails = joinNonEmpty([\n    answers.chatbot_onboarding_dauer || '',\n    answers.chatbot_neue_mitarbeiter_pro_jahr || '',\n    answers.chatbot_onboarding_themen || '',\n    answers.chatbot_aktueller_prozess || '',\n    answers.chatbot_herausforderungen || '',\n    answers.chatbot_erwartete_vorteile || ''\n  ]);\n} else if (selectedProduct === 'website') {\n  websiteDetails = joinNonEmpty([\n    answers.website_typ || '',\n    answers.website_ziele || '',\n    answers.website_zielgruppe || '',\n    answers.website_aktuelle_online_praesenz || ''\n  ]);\n}\n\nreturn {\n  json: {\n    Kontakt: kontakt,\n    'Produkt & Firma': produktFirma,\n    Firma: firma,\n    Herausforderungen: herausforderungen,\n    'Erwartungen & Problem': erwartungenProblem,\n    Bedenken: bedenken,\n    'Telefon Agent Details': telefonAgentDetails,\n    'Chatbot Details': chatbotDetails,\n    'Website Details': websiteDetails\n  }\n};"
+      },
+      "id": "code-process-fields",
+      "name": "Process Fields",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        272,
+        48
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { success: true, message: 'Daten erfolgreich empfangen' } }}",
+        "options": {}
+      },
+      "id": "5165aecf-ab2e-47ca-8cd7-121b963cfc2f",
+      "name": "Antwort senden",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        720,
+        48
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1UAEfq0p-goII8hod18qMKLTA6sYPdyA_Fdti_mJyBPQ",
+          "mode": "list",
+          "cachedResultName": "Onboaarding",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1UAEfq0p-goII8hod18qMKLTA6sYPdyA_Fdti_mJyBPQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Onboarding",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1UAEfq0p-goII8hod18qMKLTA6sYPdyA_Fdti_mJyBPQ/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Kontakt": "={{ $json.Kontakt || '' }}",
+            "Firma": "={{ $json.Firma || '' }}",
+            "Herausforderungen": "={{ $json.Herausforderungen || '' }}",
+            "Lösungen": "",
+            "Lösungstyp": "",
+            "Bedenken": "={{ $json.Bedenken || '' }}",
+            "Erster Schritt": "",
+            "Produkt & Firma": "={{ $json['Produkt & Firma'] || '' }}",
+            "Erwartungen & Problem": "={{ $json['Erwartungen & Problem'] || '' }}",
+            "Telefon Agent Details": "={{ $json['Telefon Agent Details'] || '' }}",
+            "Chatbot Details": "={{ $json['Chatbot Details'] || '' }}",
+            "Website Details": "={{ $json['Website Details'] || '' }}"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        512,
+        48
+      ],
+      "id": "a4564118-b44d-4cea-9182-a24ac03304af",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zISlUzp2C4PMOsqQ",
+          "name": "Sheets Force4Good"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Process Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Fields": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Antwort senden",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "2b04d383-5f19-4f1f-911b-8fe33b5ed00d",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "3749ac70d999460e96490de324c8a2b2362684fccc2999145d1b8bdd7b2b5561"
+  },
+  "id": "0WbQr366Luz0UEtm",
+  "tags": []
+}
