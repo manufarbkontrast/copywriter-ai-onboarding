@@ -59,13 +59,13 @@ const App: React.FC = () => {
 
   // Render Form Header used for both Contact and Onboarding steps
   const renderHeader = (title: string) => (
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-20">
+      <header className="bg-[#1a1a1a] bg-opacity-95 backdrop-blur-sm border-b border-gray-800 sticky top-0 z-20">
             <div className="max-w-3xl mx-auto px-4 h-16 flex items-center justify-between">
-                <span className="font-medium text-black tracking-wide flex items-center gap-2 text-lg">
-                    <span className="w-2 h-2 rounded-full bg-black"></span>
+                <span className="font-light text-white tracking-wide flex items-center gap-2 text-lg">
+                    <span className="w-2 h-2 rounded-full bg-white"></span>
                     {title}
                 </span>
-                <button onClick={resetApp} className="text-xs text-gray-500 hover:text-black transition-colors duration-200 tracking-wide uppercase">Abbrechen</button>
+                <button onClick={resetApp} className="text-xs text-gray-400 hover:text-white transition-colors duration-200 tracking-wide uppercase">Abbrechen</button>
             </div>
       </header>
   );
@@ -73,7 +73,7 @@ const App: React.FC = () => {
   if (step === AppStep.CONTACT) {
       return (
           <ErrorBoundary>
-            <div className="min-h-screen bg-white flex flex-col">
+            <div className="min-h-screen bg-[#1a1a1a] flex flex-col">
               {renderHeader('Kontaktdaten')}
               <ContactForm 
                 data={contactData}
@@ -89,12 +89,12 @@ const App: React.FC = () => {
   // Render Onboarding Form
   return (
     <ErrorBoundary>
-      <div className="min-h-screen bg-white flex flex-col">
+      <div className="min-h-screen bg-[#1a1a1a] flex flex-col">
       {renderHeader('Onboarding')}
       
       {error && (
         <div className="max-w-3xl mx-auto w-full px-4 mt-6 animate-fade-in">
-            <div className="bg-gray-100 text-black p-4 rounded-sm border border-gray-300">
+            <div className="bg-gray-900 bg-opacity-50 border border-gray-700 text-white p-4 rounded-lg">
                 {error}
             </div>
         </div>

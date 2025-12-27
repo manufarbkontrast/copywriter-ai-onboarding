@@ -11,36 +11,78 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
   const [heroOpacity, setHeroOpacity] = useState(1);
   const [scrollProgress, setScrollProgress] = useState(0);
   const heroRef = useRef<HTMLElement>(null);
+  const [particles, setParticles] = useState<Array<{id: number, left: number, delay: number}>>([]);
 
-  // SVG Icons für die Produkte
-  const PhoneIcon = () => (
-    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-      <rect x="20" y="15" width="60" height="70" rx="8" stroke="currentColor" strokeWidth="3" fill="none"/>
-      <rect x="30" y="25" width="40" height="30" rx="2" stroke="currentColor" strokeWidth="2" fill="none"/>
-      <circle cx="50" cy="70" r="3" fill="currentColor"/>
-      <path d="M 40 85 L 60 85" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+  // Partikel generieren
+  useEffect(() => {
+    const newParticles = Array.from({ length: 30 }, (_, i) => ({
+      id: i,
+      left: Math.random() * 100,
+      delay: Math.random() * 15
+    }));
+    setParticles(newParticles);
+  }, []);
+
+  // Pflanzen-Icons für die Produkte
+  const PhonePlantIcon = () => (
+    <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+      {/* Plant stem */}
+      <path d="M 60 80 L 60 50" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+      {/* Plant branches */}
+      <path d="M 60 55 L 45 40" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+      <path d="M 60 60 L 75 45" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+      <path d="M 60 65 L 50 50" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+      {/* Chat bubble in center */}
+      <circle cx="60" cy="40" r="12" stroke="currentColor" strokeWidth="2" fill="none"/>
+      <circle cx="60" cy="40" r="6" fill="currentColor" className="animate-pulse-glow"/>
+      {/* Leaves/Particles */}
+      <circle cx="45" cy="38" r="2" fill="currentColor" className="animate-pulse-glow"/>
+      <circle cx="75" cy="43" r="2" fill="currentColor" className="animate-pulse-glow"/>
+      <circle cx="52" cy="48" r="1.5" fill="currentColor" className="animate-pulse-glow"/>
     </svg>
   );
 
-  const ChatbotIcon = () => (
-    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-      <rect x="15" y="20" width="70" height="50" rx="5" stroke="currentColor" strokeWidth="3" fill="none"/>
-      <path d="M 25 35 L 45 35 M 25 45 L 55 45 M 25 55 L 50 55" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-      <circle cx="70" cy="40" r="8" stroke="currentColor" strokeWidth="3" fill="none"/>
-      <path d="M 25 70 L 15 80 L 25 80 Z" fill="currentColor"/>
-      <rect x="50" y="75" width="30" height="15" rx="2" stroke="currentColor" strokeWidth="2" fill="none"/>
+  const ChatbotPlantIcon = () => (
+    <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+      {/* Central node */}
+      <circle cx="60" cy="50" r="8" stroke="currentColor" strokeWidth="2" fill="none"/>
+      <text x="60" y="55" textAnchor="middle" className="text-xs fill-current">B</text>
+      {/* Branches */}
+      <path d="M 60 45 L 40 35" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+      <path d="M 60 45 L 80 35" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+      <path d="M 60 55 L 50 70" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+      <path d="M 60 55 L 70 70" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+      {/* Nodes */}
+      <circle cx="40" cy="33" r="6" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+      <text x="40" y="37" textAnchor="middle" className="text-xs fill-current">?</text>
+      <circle cx="80" cy="33" r="6" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+      <circle cx="50" cy="70" r="5" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+      <text x="50" y="74" textAnchor="middle" className="text-xs fill-current">000</text>
+      <circle cx="70" cy="70" r="5" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+      {/* Particles */}
+      <circle cx="40" cy="31" r="1.5" fill="currentColor" className="animate-pulse-glow"/>
+      <circle cx="82" cy="31" r="1.5" fill="currentColor" className="animate-pulse-glow"/>
     </svg>
   );
 
-  const WebsiteIcon = () => (
-    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-      <rect x="15" y="20" width="70" height="60" rx="3" stroke="currentColor" strokeWidth="3" fill="none"/>
-      <rect x="20" y="30" width="60" height="5" fill="currentColor"/>
-      <rect x="20" y="45" width="45" height="4" fill="currentColor"/>
-      <rect x="20" y="55" width="50" height="4" fill="currentColor"/>
-      <rect x="20" y="65" width="40" height="4" fill="currentColor"/>
-      <circle cx="75" cy="50" r="8" stroke="currentColor" strokeWidth="2" fill="none"/>
-      <path d="M 70 50 L 80 50 M 75 45 L 75 55" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+  const WebsitePlantIcon = () => (
+    <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+      {/* Plant with roots */}
+      <path d="M 60 80 L 60 40" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+      {/* Roots */}
+      <path d="M 60 80 L 50 90" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      <path d="M 60 80 L 70 90" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      {/* Branches to buildings */}
+      <path d="M 60 50 L 85 35" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeDasharray="3,3"/>
+      <path d="M 60 55 L 85 40" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeDasharray="3,3"/>
+      {/* Building structures */}
+      <rect x="80" y="30" width="12" height="15" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+      <rect x="83" y="33" width="3" height="3" fill="currentColor"/>
+      <rect x="88" y="33" width="3" height="3" fill="currentColor"/>
+      <rect x="80" y="38" width="12" height="7" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+      {/* Leaves */}
+      <circle cx="45" cy="45" r="3" fill="currentColor" className="animate-pulse-glow"/>
+      <circle cx="55" cy="35" r="2.5" fill="currentColor" className="animate-pulse-glow"/>
     </svg>
   );
 
@@ -48,7 +90,7 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
     {
       id: 'phone-agent' as ProductType,
       title: "KI Telefon Agenten",
-      icon: PhoneIcon,
+      icon: PhonePlantIcon,
       description: "Intelligente Telefonassistenten, die Ihre Kundenanfragen professionell bearbeiten und rund um die Uhr verfügbar sind.",
       benefits: [
         "24/7 Verfügbarkeit für Ihre Kunden",
@@ -66,7 +108,7 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
     {
       id: 'chatbot' as ProductType,
       title: "Onboarding für Mitarbeiter durch Chatbot",
-      icon: ChatbotIcon,
+      icon: ChatbotPlantIcon,
       description: "Automatisiertes Mitarbeiter-Onboarding mit intelligenten Chatbots, die neue Mitarbeiter effizient einarbeiten.",
       benefits: [
         "Konsistentes Onboarding für alle neuen Mitarbeiter",
@@ -84,7 +126,7 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
     {
       id: 'website' as ProductType,
       title: "Website Erstellung",
-      icon: WebsiteIcon,
+      icon: WebsitePlantIcon,
       description: "Professionelle, moderne Websites, die Ihre Marke optimal präsentieren und Ihre Geschäftsziele unterstützen.",
       benefits: [
         "Professionelle Online-Präsenz",
@@ -136,16 +178,16 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Initial call
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <div className="bg-white">
+    <div className="bg-[#1a1a1a] min-h-screen">
       {/* Scroll Progress Indicator */}
-      <div className="fixed top-0 left-0 right-0 h-1 bg-gray-100 z-50">
+      <div className="fixed top-0 left-0 right-0 h-1 bg-gray-800 z-50">
         <div 
-          className="h-full bg-black transition-all duration-150 ease-out"
+          className="h-full bg-white transition-all duration-150 ease-out"
           style={{ width: `${scrollProgress}%` }}
         />
       </div>
@@ -159,16 +201,31 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
           transform: `translateY(${scrollY * 0.5}px)`,
         }}
       >
-        {/* Animated Background Elements */}
+        {/* Floating Particles */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {particles.map((particle) => (
+            <div
+              key={particle.id}
+              className="absolute w-1 h-1 bg-white rounded-full particle opacity-60"
+              style={{
+                left: `${particle.left}%`,
+                top: '100%',
+                animationDelay: `${particle.delay}s`,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Animated Background Glows */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div 
-            className="absolute top-1/4 left-1/4 w-96 h-96 bg-gray-100 rounded-full blur-3xl opacity-30"
+            className="absolute top-1/4 left-1/4 w-96 h-96 bg-white rounded-full blur-3xl opacity-5 animate-pulse-glow"
             style={{
               transform: `translate(${scrollY * 0.3}px, ${scrollY * 0.4}px) scale(${1 + scrollY * 0.0003})`
             }}
           />
           <div 
-            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gray-100 rounded-full blur-3xl opacity-30"
+            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white rounded-full blur-3xl opacity-5 animate-pulse-glow"
             style={{
               transform: `translate(${-scrollY * 0.3}px, ${-scrollY * 0.4}px) scale(${1 + scrollY * 0.0003})`
             }}
@@ -182,17 +239,17 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
           }}
         >
           <h1 
-            className="text-6xl md:text-8xl lg:text-9xl font-light text-black mb-8 md:mb-12 tracking-tight leading-none"
+            className="text-6xl md:text-8xl lg:text-9xl font-light text-white mb-8 md:mb-12 tracking-tight leading-none"
             style={{
               transform: `scale(${Math.max(0.7, 1 - scrollY * 0.0008)}) translateY(${scrollY * 0.1}px)`,
-              textShadow: scrollY > 30 ? '0 4px 30px rgba(0,0,0,0.15)' : 'none',
+              textShadow: '0 0 40px rgba(255,255,255,0.1)',
               opacity: Math.max(0.3, 1 - scrollY * 0.0015),
             }}
           >
             FORCE4GOOD
           </h1>
           <p 
-            className="text-xl md:text-2xl lg:text-3xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-12 md:mb-16 font-light"
+            className="text-xl md:text-2xl lg:text-3xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-12 md:mb-16 font-light"
             style={{
               transform: `translateY(${scrollY * 0.2}px)`,
               opacity: Math.max(0, 1 - scrollY * 0.003),
@@ -201,7 +258,7 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
             Innovative KI-Lösungen, die Ihr Unternehmen voranbringen
           </p>
           <p 
-            className="text-base md:text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed mb-12 md:mb-16"
+            className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed mb-12 md:mb-16"
             style={{
               transform: `translateY(${scrollY * 0.25}px)`,
               opacity: Math.max(0, 1 - scrollY * 0.004),
@@ -213,14 +270,14 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
           {/* Scroll Indicator */}
           <button
             onClick={scrollToProducts}
-            className="group flex flex-col items-center gap-2 text-gray-400 hover:text-black transition-colors duration-300 animate-gentle-bounce relative z-10"
+            className="group flex flex-col items-center gap-2 text-gray-400 hover:text-white transition-colors duration-300 animate-gentle-bounce relative z-10"
             style={{
               opacity: Math.max(0, 1 - scrollY * 0.008),
               transform: `translateY(${scrollY * 0.3}px)`,
             }}
             aria-label="Zu den Produkten scrollen"
           >
-            <span className="text-sm uppercase tracking-widest font-light">Produkte entdecken</span>
+            <span className="text-sm uppercase tracking-widest font-light">Lösungen entdecken</span>
             <svg 
               className="w-6 h-6 transform group-hover:translate-y-1 transition-transform duration-300" 
               fill="none" 
@@ -234,15 +291,15 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
       </section>
 
       {/* Header mit Button oben rechts - Sticky */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-20">
+      <header className="bg-[#1a1a1a] bg-opacity-95 backdrop-blur-sm border-b border-gray-800 sticky top-0 z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-end">
           <button
             onClick={handleStartOnboarding}
             disabled={!selectedProduct}
             className={`px-6 py-2.5 text-sm font-medium tracking-wide rounded-sm transition-all duration-300 transform uppercase ${
               selectedProduct
-                ? 'bg-black hover:bg-gray-800 text-white shadow-sm hover:shadow-md hover:-translate-y-0.5'
-                : 'bg-gray-200 text-gray-400 cursor-not-allowed transform-none'
+                ? 'bg-white hover:bg-gray-200 text-[#1a1a1a] shadow-sm hover:shadow-md hover:-translate-y-0.5'
+                : 'bg-gray-800 text-gray-500 cursor-not-allowed transform-none border border-gray-700'
             }`}
           >
             Onboarding starten
@@ -255,84 +312,63 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
 
         {/* Section Title */}
         <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-black mb-4 tracking-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-4 tracking-tight">
             Unsere Lösungen
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
             Wählen Sie die KI-Lösung, die am besten zu Ihrem Unternehmen passt
           </p>
         </div>
 
         {/* Produkte */}
-        <div className="space-y-12 md:space-y-16">
+        <div className="grid md:grid-cols-3 gap-8">
           {products.map((product, index) => {
             const isSelected = selectedProduct === product.id;
             return (
               <div
                 key={product.id}
-                className={`flex flex-col ${
-                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                } gap-8 md:gap-16 items-center animate-fade-in border-2 rounded-sm p-6 md:p-8 transition-all duration-300 ${
+                className={`relative bg-gray-900 bg-opacity-50 backdrop-blur-sm border-2 rounded-lg p-8 transition-all duration-300 cursor-pointer animate-fade-in hover:border-white hover:bg-opacity-70 ${
                   isSelected 
-                    ? 'border-black bg-gray-50' 
-                    : 'border-gray-200 bg-white hover:border-gray-300 cursor-pointer'
+                    ? 'border-white bg-opacity-80' 
+                    : 'border-gray-700'
                 }`}
                 style={{ animationDelay: `${index * 0.1}s` }}
                 onClick={() => handleProductSelect(product.id)}
               >
-                {/* Icon/Visual */}
-                <div className="flex-shrink-0 w-full md:w-1/3 flex justify-center">
-                  <div className={`w-32 h-32 rounded-lg flex items-center justify-center transition-transform duration-300 hover:scale-110 p-6 ${
-                    isSelected ? 'bg-black text-white' : 'bg-gray-100 text-black border-2 border-gray-300'
+                {isSelected && (
+                  <div className="absolute top-4 right-4 w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                    <svg className="w-4 h-4 text-[#1a1a1a]" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                )}
+
+                {/* Icon */}
+                <div className="flex justify-center mb-6">
+                  <div className={`w-24 h-24 flex items-center justify-center transition-transform duration-300 hover:scale-110 ${
+                    isSelected ? 'text-white' : 'text-gray-400'
                   }`}>
                     <product.icon />
                   </div>
                 </div>
 
                 {/* Content */}
-                <div className="flex-1 w-full">
-                  <div className="flex items-center gap-3 mb-4">
-                    <h2 className="text-3xl md:text-4xl font-medium text-black tracking-tight">
-                      {product.title}
-                    </h2>
-                    {isSelected && (
-                      <span className="text-black text-xl">✓</span>
-                    )}
-                  </div>
-                  <p className="text-base md:text-lg text-gray-700 mb-8 leading-relaxed">
+                <div>
+                  <h3 className="text-2xl font-light text-white mb-4 tracking-tight">
+                    {product.title}
+                  </h3>
+                  <p className="text-sm text-gray-400 mb-6 leading-relaxed">
                     {product.description}
                   </p>
 
-                  <div className="grid md:grid-cols-2 gap-8">
-                    {/* Vorteile */}
-                    <div>
-                      <h3 className="text-sm font-medium text-black uppercase tracking-widest mb-4">
-                        Vorteile
-                      </h3>
-                      <ul className="space-y-3">
-                        {product.benefits.map((benefit, i) => (
-                          <li key={i} className="flex items-start gap-3">
-                            <span className="text-black mt-1.5 flex-shrink-0">✓</span>
-                            <span className="text-gray-700 text-sm leading-relaxed">{benefit}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Probleme die gelöst werden */}
-                    <div>
-                      <h3 className="text-sm font-medium text-black uppercase tracking-widest mb-4">
-                        Löst diese Probleme
-                      </h3>
-                      <ul className="space-y-3">
-                        {product.problems.map((problem, i) => (
-                          <li key={i} className="flex items-start gap-3">
-                            <span className="text-gray-400 mt-1.5 flex-shrink-0">•</span>
-                            <span className="text-gray-600 text-sm leading-relaxed">{problem}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                  {/* Benefits - simplified */}
+                  <div className="space-y-2 mb-4">
+                    {product.benefits.slice(0, 2).map((benefit, i) => (
+                      <div key={i} className="flex items-start gap-2">
+                        <span className="text-white mt-1 flex-shrink-0">✓</span>
+                        <span className="text-gray-300 text-xs leading-relaxed">{benefit}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -342,21 +378,21 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
       </section>
 
       {/* CTA Section unten */}
-      <section className="bg-gray-50 border-t border-gray-200 py-16">
+      <section className="border-t border-gray-800 py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl md:text-3xl font-light text-black mb-6 tracking-tight">
+          <h2 className="text-2xl md:text-3xl font-light text-white mb-6 tracking-tight">
             Bereit für Ihre individuelle Lösung?
           </h2>
-          <p className="text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed">
             Starten Sie jetzt das Onboarding und finden Sie die perfekte KI-Lösung für Ihr Unternehmen.
           </p>
           <button
             onClick={handleStartOnboarding}
             disabled={!selectedProduct}
-            className={`px-10 py-4 text-white text-sm font-medium tracking-wide rounded-sm shadow-sm transition-all duration-300 transform uppercase ${
+            className={`px-10 py-4 text-sm font-medium tracking-wide rounded-sm transition-all duration-300 transform uppercase ${
               selectedProduct
-                ? 'bg-black hover:bg-gray-800 hover:shadow-md hover:-translate-y-0.5'
-                : 'bg-gray-300 cursor-not-allowed transform-none'
+                ? 'bg-white hover:bg-gray-200 text-[#1a1a1a] hover:shadow-md hover:-translate-y-0.5'
+                : 'bg-gray-800 text-gray-500 cursor-not-allowed transform-none border border-gray-700'
             }`}
           >
             {selectedProduct ? 'Onboarding starten' : 'Bitte wählen Sie ein Produkt'}
@@ -368,4 +404,3 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
 };
 
 export default ProductPage;
-
