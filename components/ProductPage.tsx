@@ -13,12 +13,12 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
   const heroRef = useRef<HTMLElement>(null);
   const [particles, setParticles] = useState<Array<{id: number, left: number, delay: number}>>([]);
 
-  // Partikel generieren
+  // Partikel generieren - weniger und subtiler
   useEffect(() => {
-    const newParticles = Array.from({ length: 30 }, (_, i) => ({
+    const newParticles = Array.from({ length: 15 }, (_, i) => ({
       id: i,
       left: Math.random() * 100,
-      delay: Math.random() * 15
+      delay: Math.random() * 20
     }));
     setParticles(newParticles);
   }, []);
@@ -201,12 +201,12 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
           transform: `translateY(${scrollY * 0.5}px)`,
         }}
       >
-        {/* Floating Particles */}
+        {/* Floating Particles - subtiler */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {particles.map((particle) => (
             <div
               key={particle.id}
-              className="absolute w-1 h-1 bg-white rounded-full particle opacity-60"
+              className="absolute w-0.5 h-0.5 bg-white rounded-full particle opacity-20"
               style={{
                 left: `${particle.left}%`,
                 top: '100%',
@@ -216,18 +216,18 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
           ))}
         </div>
 
-        {/* Animated Background Glows */}
+        {/* Animated Background Glows - sehr subtil */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div 
-            className="absolute top-1/4 left-1/4 w-96 h-96 bg-white rounded-full blur-3xl opacity-5 animate-pulse-glow"
+            className="absolute top-1/4 left-1/4 w-96 h-96 bg-white rounded-full blur-3xl opacity-2"
             style={{
-              transform: `translate(${scrollY * 0.3}px, ${scrollY * 0.4}px) scale(${1 + scrollY * 0.0003})`
+              transform: `translate(${scrollY * 0.2}px, ${scrollY * 0.3}px) scale(${1 + scrollY * 0.0002})`
             }}
           />
           <div 
-            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white rounded-full blur-3xl opacity-5 animate-pulse-glow"
+            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white rounded-full blur-3xl opacity-2"
             style={{
-              transform: `translate(${-scrollY * 0.3}px, ${-scrollY * 0.4}px) scale(${1 + scrollY * 0.0003})`
+              transform: `translate(${-scrollY * 0.2}px, ${-scrollY * 0.3}px) scale(${1 + scrollY * 0.0002})`
             }}
           />
         </div>
@@ -242,7 +242,7 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
             className="text-6xl md:text-8xl lg:text-9xl font-light text-white mb-8 md:mb-12 tracking-tight leading-none"
             style={{
               transform: `scale(${Math.max(0.7, 1 - scrollY * 0.0008)}) translateY(${scrollY * 0.1}px)`,
-              textShadow: '0 0 40px rgba(255,255,255,0.1)',
+              textShadow: '0 0 20px rgba(255,255,255,0.05)',
               opacity: Math.max(0.3, 1 - scrollY * 0.0015),
             }}
           >
