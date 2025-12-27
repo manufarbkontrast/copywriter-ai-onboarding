@@ -183,7 +183,22 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
   }, []);
 
   return (
-    <div className="bg-[#1a1a1a] min-h-screen">
+    <div className="bg-[#1a1a1a] min-h-screen relative">
+      {/* Floating Particles - über die gesamte Seite */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        {particles.map((particle) => (
+          <div
+            key={particle.id}
+            className="absolute w-0.5 h-0.5 bg-white rounded-full particle opacity-20"
+            style={{
+              left: `${particle.left}%`,
+              top: '100%',
+              animationDelay: `${particle.delay}s`,
+            }}
+          />
+        ))}
+      </div>
+
       {/* Scroll Progress Indicator */}
       <div className="fixed top-0 left-0 right-0 h-1 bg-gray-800 z-50">
         <div 
@@ -195,26 +210,12 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
       {/* Große Hero Section mit Scroll-Effekten */}
       <section 
         ref={heroRef}
-        className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+        className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 relative"
         style={{
           opacity: heroOpacity,
           transform: `translateY(${scrollY * 0.5}px)`,
         }}
       >
-        {/* Floating Particles - subtiler */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {particles.map((particle) => (
-            <div
-              key={particle.id}
-              className="absolute w-0.5 h-0.5 bg-white rounded-full particle opacity-20"
-              style={{
-                left: `${particle.left}%`,
-                top: '100%',
-                animationDelay: `${particle.delay}s`,
-              }}
-            />
-          ))}
-        </div>
 
         {/* Animated Background Glows - sehr subtil */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -235,7 +236,7 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
         </div>
 
         <div 
-          className="text-center max-w-5xl mx-auto animate-fade-in relative z-10"
+          className="text-center max-w-5xl mx-auto animate-fade-in relative z-20"
           style={{
             transform: `translateY(${-scrollY * 0.4}px)`,
           }}
@@ -293,7 +294,7 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
       </section>
 
       {/* Header mit Button oben rechts - Sticky */}
-      <header className="bg-[#1a1a1a] bg-opacity-95 backdrop-blur-sm border-b border-gray-800 sticky top-0 z-20">
+      <header className="bg-[#1a1a1a] bg-opacity-95 backdrop-blur-sm border-b border-gray-800 sticky top-0 z-30 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-end">
           <button
             onClick={handleStartOnboarding}
@@ -310,7 +311,7 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
       </header>
 
       {/* Produkte Section */}
-      <section id="products-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <section id="products-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative z-10">
 
         {/* Section Title */}
         <div className="text-center mb-16 animate-fade-in">
@@ -380,7 +381,7 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
       </section>
 
       {/* CTA Section unten */}
-      <section className="border-t border-gray-800 py-16">
+      <section className="border-t border-gray-800 py-16 relative z-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl md:text-3xl font-light text-white mb-6 tracking-tight">
             Bereit für Ihre individuelle Lösung?
