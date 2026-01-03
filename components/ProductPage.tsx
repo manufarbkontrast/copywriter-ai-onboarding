@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ProductType } from '../types';
+import Prism from './Prism';
 
 interface Props {
   onStartOnboarding: (product: ProductType) => void;
@@ -184,6 +185,23 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
 
   return (
     <div className="bg-[#1a1a1a] min-h-screen relative">
+      {/* Prism Background - über die gesamte Seite */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <Prism
+          height={3.5}
+          baseWidth={5.5}
+          animationType="3drotate"
+          glow={0.3}
+          noise={0.2}
+          transparent={true}
+          scale={3.6}
+          hueShift={0}
+          colorFrequency={1}
+          timeScale={0.3}
+          bloom={0.5}
+        />
+      </div>
+
       {/* Floating Particles - über die gesamte Seite */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         {particles.map((particle) => (
