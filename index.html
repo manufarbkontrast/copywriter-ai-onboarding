@@ -60,6 +60,25 @@
       .animate-pulse-glow {
         animation: pulse-glow 6s ease-in-out infinite;
       }
+      .page-transition {
+        transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+      }
+      .page-transition-enter {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      .page-transition-enter-active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .page-transition-exit {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .page-transition-exit-active {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
     </style>
   <script type="importmap">
 {
