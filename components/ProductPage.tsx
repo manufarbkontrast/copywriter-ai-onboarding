@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ProductType } from '../types';
+import TextPressure from './TextPressure';
 
 interface Props {
   onStartOnboarding: (product: ProductType) => void;
@@ -223,7 +224,9 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
               opacity: Math.max(0.3, 1 - scrollY * 0.0015),
             }}
           >
-            FORCE4GOOD
+            <TextPressure intensity={0.4}>
+              FORCE4GOOD
+            </TextPressure>
           </h1>
           <p 
             className="text-xl md:text-2xl lg:text-3xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-12 md:mb-16 font-light"
