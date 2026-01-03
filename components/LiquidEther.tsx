@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
+// LiquidEther - Fließender Hintergrund-Effekt inspiriert von React Bits MCP
 const LiquidEther: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -36,7 +37,7 @@ const LiquidEther: React.FC = () => {
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Draw liquid blobs
+      // Draw liquid blobs - Ether-ähnliche Formen
       const centerX = canvas.width / 2;
       const centerY = canvas.height / 2;
       
