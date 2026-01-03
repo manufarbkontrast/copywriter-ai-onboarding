@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ProductType } from '../types';
-import Prism from './Prism';
 
 interface Props {
   onStartOnboarding: (product: ProductType) => void;
@@ -12,17 +11,6 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
   const [heroOpacity, setHeroOpacity] = useState(1);
   const [scrollProgress, setScrollProgress] = useState(0);
   const heroRef = useRef<HTMLElement>(null);
-  const [particles, setParticles] = useState<Array<{id: number, left: number, delay: number}>>([]);
-
-  // Partikel generieren - weniger und subtiler
-  useEffect(() => {
-    const newParticles = Array.from({ length: 15 }, (_, i) => ({
-      id: i,
-      left: Math.random() * 100,
-      delay: Math.random() * 20
-    }));
-    setParticles(newParticles);
-  }, []);
 
   // Pflanzen-Icons für die Produkte
   const PhonePlantIcon = () => (
@@ -185,38 +173,6 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
 
   return (
     <div className="bg-[#1a1a1a] min-h-screen relative">
-      {/* Prism Background - über die gesamte Seite */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <Prism
-          height={3.5}
-          baseWidth={5.5}
-          animationType="3drotate"
-          glow={0.3}
-          noise={0.2}
-          transparent={true}
-          scale={3.6}
-          hueShift={0}
-          colorFrequency={1}
-          timeScale={0.3}
-          bloom={0.5}
-        />
-      </div>
-
-      {/* Floating Particles - über die gesamte Seite */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        {particles.map((particle) => (
-          <div
-            key={particle.id}
-            className="absolute w-0.5 h-0.5 bg-white rounded-full particle opacity-20"
-            style={{
-              left: `${particle.left}%`,
-              top: '100%',
-              animationDelay: `${particle.delay}s`,
-            }}
-          />
-        ))}
-      </div>
-
       {/* Scroll Progress Indicator */}
       <div className="fixed top-0 left-0 right-0 h-1 bg-gray-800 z-50">
         <div 
