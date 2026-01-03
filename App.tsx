@@ -6,6 +6,7 @@ import ThankYouView from './components/ThankYouView';
 import ContactForm from './components/ContactForm';
 import ProductPage from './components/ProductPage';
 import ErrorBoundary from './components/ErrorBoundary';
+import TargetCursor from './components/TargetCursor';
 
 const App: React.FC = () => {
   const [step, setStep] = useState<AppStep>(AppStep.PRODUCTS);
@@ -39,6 +40,7 @@ const App: React.FC = () => {
   if (step === AppStep.PRODUCTS) {
     return (
       <ErrorBoundary>
+        <TargetCursor />
         <ProductPage onStartOnboarding={startOnboarding} />
       </ErrorBoundary>
     );
@@ -48,6 +50,7 @@ const App: React.FC = () => {
   if (step === AppStep.RESULT) {
     return (
       <ErrorBoundary>
+        <TargetCursor />
         <ThankYouView 
           formData={formData}
           contactData={contactData}
@@ -73,6 +76,7 @@ const App: React.FC = () => {
   if (step === AppStep.CONTACT) {
       return (
           <ErrorBoundary>
+            <TargetCursor />
             <div className="min-h-screen bg-[#1a1a1a] flex flex-col">
               {renderHeader('Kontaktdaten')}
               <ContactForm 
@@ -89,6 +93,7 @@ const App: React.FC = () => {
   // Render Onboarding Form
   return (
     <ErrorBoundary>
+      <TargetCursor />
       <div className="min-h-screen bg-[#1a1a1a] flex flex-col">
       {renderHeader('Onboarding')}
       
