@@ -216,18 +216,30 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
             transform: `translateY(${-scrollY * 0.4}px)`,
           }}
         >
-          <h1 
-            className="text-6xl md:text-8xl lg:text-9xl font-light text-white mb-8 md:mb-12 tracking-tight leading-none"
+          <div
+            className="mb-8 md:mb-12"
             style={{
               transform: `scale(${Math.max(0.7, 1 - scrollY * 0.0008)}) translateY(${scrollY * 0.1}px)`,
               textShadow: '0 0 20px rgba(255,255,255,0.05)',
               opacity: Math.max(0.3, 1 - scrollY * 0.0015),
             }}
           >
-            <TextPressure intensity={0.4}>
-              FORCE4GOOD
-            </TextPressure>
-          </h1>
+            <TextPressure
+              text="FORCE4GOOD"
+              fontFamily="Inter, sans-serif"
+              fontUrl=""
+              width={true}
+              weight={true}
+              italic={false}
+              alpha={false}
+              flex={false}
+              stroke={false}
+              scale={false}
+              textColor="#FFFFFF"
+              minFontSize={48}
+              className="text-6xl md:text-8xl lg:text-9xl font-light tracking-tight leading-none"
+            />
+          </div>
           <p 
             className="text-xl md:text-2xl lg:text-3xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-12 md:mb-16 font-light"
             style={{
