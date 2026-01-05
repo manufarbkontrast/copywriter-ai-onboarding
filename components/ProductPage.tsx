@@ -214,6 +214,8 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
           className="text-center max-w-5xl mx-auto animate-fade-in relative z-20"
           style={{
             transform: `translateY(${-scrollY * 0.4}px)`,
+            paddingTop: '126px',
+            paddingBottom: '126px',
           }}
         >
           <div
