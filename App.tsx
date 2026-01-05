@@ -55,13 +55,13 @@ const App: React.FC = () => {
 
   // Render Form Header used for both Contact and Onboarding steps
   const renderHeader = (title: string) => (
-      <header className="bg-[#1a1a1a] bg-opacity-95 backdrop-blur-sm border-b border-gray-800 sticky top-0 z-20">
+      <header className="bg-[#ff4500] bg-opacity-95 backdrop-blur-sm border-b border-black sticky top-0 z-20">
             <div className="max-w-3xl mx-auto px-4 h-16 flex items-center justify-between">
-                <span className="font-light text-white tracking-wide flex items-center gap-2 text-lg">
-                    <span className="w-2 h-2 rounded-full bg-white"></span>
+                <span className="font-light text-black tracking-wide flex items-center gap-2 text-lg">
+                    <span className="w-2 h-2 rounded-full bg-black"></span>
                     {title}
                 </span>
-                <button onClick={resetApp} className="text-xs text-gray-400 hover:text-white transition-colors duration-200 tracking-wide uppercase">Abbrechen</button>
+                <button onClick={resetApp} className="text-xs text-black hover:text-black transition-colors duration-200 tracking-wide uppercase">Abbrechen</button>
             </div>
       </header>
   );
@@ -70,7 +70,7 @@ const App: React.FC = () => {
     <ErrorBoundary>
       <TargetCursor />
       <LiquidEther />
-      <div className="min-h-screen bg-[#1a1a1a] relative">
+      <div className="min-h-screen bg-[#ff4500] relative">
         {displayStep === AppStep.PRODUCTS && (
           <div 
             className="absolute inset-0 page-transition"
@@ -86,7 +86,7 @@ const App: React.FC = () => {
 
         {displayStep === AppStep.CONTACT && (
           <div 
-            className="absolute inset-0 min-h-screen bg-[#1a1a1a] flex flex-col page-transition"
+            className="absolute inset-0 min-h-screen bg-[#ff4500] flex flex-col page-transition"
             style={{ 
               opacity: isTransitioning && step !== AppStep.CONTACT ? 0 : 1,
               pointerEvents: displayStep !== AppStep.CONTACT ? 'none' : 'auto',
@@ -105,7 +105,7 @@ const App: React.FC = () => {
 
         {displayStep === AppStep.FORM && (
           <div 
-            className="absolute inset-0 min-h-screen bg-[#1a1a1a] flex flex-col page-transition"
+            className="absolute inset-0 min-h-screen bg-[#ff4500] flex flex-col page-transition"
             style={{ 
               opacity: isTransitioning && step !== AppStep.FORM ? 0 : 1,
               pointerEvents: displayStep !== AppStep.FORM ? 'none' : 'auto',
@@ -116,7 +116,7 @@ const App: React.FC = () => {
             
             {error && (
               <div className="max-w-3xl mx-auto w-full px-4 mt-6 animate-fade-in">
-                  <div className="bg-gray-900 bg-opacity-50 border border-gray-700 text-white p-4 rounded-lg">
+                  <div className="bg-[#ff4500] bg-opacity-50 border border-black text-black p-4 rounded-lg">
                       {error}
                   </div>
               </div>

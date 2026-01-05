@@ -112,20 +112,20 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
       />
 
       <div 
-        className={`bg-gray-900 bg-opacity-50 backdrop-blur-sm border border-gray-700 rounded-lg p-6 sm:p-10 transition-opacity duration-300 transform ${isAnimating ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}
+        className={`bg-black bg-opacity-50 backdrop-blur-sm border border-black rounded-lg p-6 sm:p-10 transition-opacity duration-300 transform ${isAnimating ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}
       >
         <div className="mb-4">
-           <span className="text-xs text-gray-400 font-medium uppercase tracking-widest">{currentQuestion.goal}</span>
+           <span className="text-xs text-black font-medium uppercase tracking-widest">{currentQuestion.goal}</span>
         </div>
         
-        <h3 className="text-2xl sm:text-3xl font-light text-white mb-8 leading-tight">
+        <h3 className="text-2xl sm:text-3xl font-light text-black mb-8 leading-tight">
           {currentQuestion.label}
         </h3>
         
         {currentQuestion.context && (
-          <div className="bg-gray-800 bg-opacity-50 border-l-2 border-white p-4 mb-6 rounded">
-            <p className="text-sm text-gray-300 font-light">
-               <span className="font-normal text-white">Hinweis:</span> {currentQuestion.context}
+          <div className="bg-black bg-opacity-50 border-l-2 border-white p-4 mb-6 rounded">
+            <p className="text-sm text-black font-light">
+               <span className="font-normal text-black">Hinweis:</span> {currentQuestion.context}
             </p>
           </div>
         )}
@@ -145,19 +145,19 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
                     onClick={() => handleOptionSelect(option)}
                     className={`w-full text-left p-4 border-2 rounded-lg transition-all duration-200 ${
                       isSelected
-                        ? 'border-white bg-white text-[#1a1a1a]'
-                        : 'border-gray-700 bg-gray-900 bg-opacity-30 text-gray-300 hover:border-gray-600 hover:text-white'
+                        ? 'border-white bg-black text-white'
+                        : 'border-black bg-black bg-opacity-30 text-black hover:border-black hover:text-black'
                     }`}
                   >
                     <div className="flex items-center gap-3">
                       {isMultiple && (
                         <div className={`w-5 h-5 border-2 rounded-sm flex items-center justify-center flex-shrink-0 ${
                           isSelected
-                            ? 'border-[#1a1a1a] bg-[#1a1a1a]'
-                            : 'border-gray-500 bg-transparent'
+                            ? 'border-[#1a1a1a] bg-[#ff4500]'
+                            : 'border-black bg-transparent'
                         }`}>
                           {isSelected && (
-                            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <svg className="w-3 h-3 text-black" fill="currentColor" viewBox="0 0 20 20">
                               <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                             </svg>
                           )}
@@ -173,7 +173,7 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
             {currentQuestion.id === 'hero_identity' && 
              !isMultiple && currentValue === 'Andere Branche' && (
               <div className="mb-6 mt-4">
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-black mb-2">
                   Bitte geben Sie Ihre Branche an:
                 </label>
                 <input
@@ -189,7 +189,7 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
                     });
                   }}
                   placeholder="z.B. Gastronomie, Handwerk, etc."
-                  className="w-full p-4 border-2 border-gray-700 rounded-lg focus:ring-2 focus:ring-white focus:border-white transition-all duration-200 text-white bg-gray-900 bg-opacity-50 placeholder-gray-500"
+                  className="w-full p-4 border-2 border-black rounded-lg focus:ring-2 focus:ring-white focus:border-white transition-all duration-200 text-black bg-black bg-opacity-50 placeholder-gray-500"
                   autoFocus
                 />
               </div>
@@ -200,19 +200,19 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
             value={currentValue}
             onChange={handleChange}
             placeholder={currentQuestion.placeholder || "Ihre Antwort..."}
-            className="w-full h-40 p-5 border-2 border-gray-700 rounded-lg focus:ring-2 focus:ring-white focus:border-white transition-all duration-200 resize-none text-white leading-relaxed bg-gray-900 bg-opacity-50 placeholder-gray-500"
+            className="w-full h-40 p-5 border-2 border-black rounded-lg focus:ring-2 focus:ring-white focus:border-white transition-all duration-200 resize-none text-black leading-relaxed bg-black bg-opacity-50 placeholder-gray-500"
             autoFocus
           />
         )}
 
-        <div className="flex justify-between mt-10 pt-6 border-t border-gray-800">
+        <div className="flex justify-between mt-10 pt-6 border-t border-black">
           <button
             onClick={handlePrev}
             disabled={currentQuestionIndex === 0}
             className={`px-6 py-3 text-sm font-light tracking-wide transition-colors duration-200 ${
               currentQuestionIndex === 0
-                ? 'text-gray-600 cursor-not-allowed'
-                : 'text-gray-400 hover:text-white'
+                ? 'text-black cursor-not-allowed'
+                : 'text-black hover:text-black'
             }`}
           >
             Zurück
@@ -231,8 +231,8 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
               (isMultiple
                 ? !selectedValues || selectedValues.length < 1
                 : !currentValue || (typeof currentValue === 'string' && currentValue.length < 1))
-                ? 'bg-gray-800 text-gray-500 cursor-not-allowed transform-none border border-gray-700'
-                : 'bg-white text-[#1a1a1a] hover:bg-gray-200'
+                ? 'bg-black text-black cursor-not-allowed transform-none border border-black'
+                : 'bg-black text-white hover:bg-black'
             }`}
           >
             {isLastQuestion ? 'Absenden' : 'Weiter'}
@@ -240,7 +240,7 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
         </div>
       </div>
       
-      <div className="mt-6 text-center text-xs text-gray-500 tracking-wide">
+      <div className="mt-6 text-center text-xs text-black tracking-wide">
         Frage {currentQuestionIndex + 1} von {filteredQuestions.length}
       </div>
     </div>

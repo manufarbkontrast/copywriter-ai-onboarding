@@ -18,15 +18,15 @@ const ContactForm: React.FC<Props> = ({ data, onUpdate, onNext, onBack }) => {
 
   return (
     <div className="max-w-2xl mx-auto w-full px-4 sm:px-6 py-8">
-      <div className="bg-gray-900 bg-opacity-50 backdrop-blur-sm border border-gray-700 rounded-lg p-6 sm:p-10 animate-fade-in">
-        <div className="mb-10 border-b-2 border-gray-800 pb-6">
-          <h2 className="text-3xl font-light text-white tracking-wide mb-3">Kontaktdaten</h2>
-          <p className="text-sm text-gray-400 font-light">Bitte gib zuerst deine Kontaktdaten ein.</p>
+      <div className="bg-black bg-opacity-50 backdrop-blur-sm border border-black rounded-lg p-6 sm:p-10 animate-fade-in">
+        <div className="mb-10 border-b-2 border-black pb-6">
+          <h2 className="text-3xl font-light text-black tracking-wide mb-3">Kontaktdaten</h2>
+          <p className="text-sm text-black font-light">Bitte gib zuerst deine Kontaktdaten ein.</p>
         </div>
 
         <div className="space-y-6">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-3 uppercase tracking-wider">
+            <label htmlFor="name" className="block text-sm font-medium text-black mb-3 uppercase tracking-wider">
               Firma / Name Kunde *
             </label>
             <input
@@ -36,13 +36,13 @@ const ContactForm: React.FC<Props> = ({ data, onUpdate, onNext, onBack }) => {
               required
               value={data.name}
               onChange={handleChange}
-              className="w-full px-5 py-4 border-2 border-gray-700 rounded-lg focus:ring-2 focus:ring-white focus:border-white transition-all duration-200 bg-gray-900 bg-opacity-50 text-white placeholder-gray-500"
+              className="w-full px-5 py-4 border-2 border-black rounded-lg focus:ring-2 focus:ring-white focus:border-white transition-all duration-200 bg-black bg-opacity-50 text-black placeholder-gray-500"
               placeholder="z.B. Acme GmbH oder Max Mustermann"
             />
           </div>
 
           <div>
-            <label htmlFor="address" className="block text-sm font-medium text-gray-300 mb-3 uppercase tracking-wider">
+            <label htmlFor="address" className="block text-sm font-medium text-black mb-3 uppercase tracking-wider">
               Adresse
             </label>
             <input
@@ -51,14 +51,14 @@ const ContactForm: React.FC<Props> = ({ data, onUpdate, onNext, onBack }) => {
               id="address"
               value={data.address}
               onChange={handleChange}
-              className="w-full px-5 py-4 border-2 border-gray-700 rounded-lg focus:ring-2 focus:ring-white focus:border-white transition-all duration-200 bg-gray-900 bg-opacity-50 text-white placeholder-gray-500"
+              className="w-full px-5 py-4 border-2 border-black rounded-lg focus:ring-2 focus:ring-white focus:border-white transition-all duration-200 bg-black bg-opacity-50 text-black placeholder-gray-500"
               placeholder="Musterstraße 1, 12345 Berlin"
             />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-3 uppercase tracking-wider">
+              <label htmlFor="phone" className="block text-sm font-medium text-black mb-3 uppercase tracking-wider">
                 Telefon
               </label>
               <input
@@ -67,13 +67,13 @@ const ContactForm: React.FC<Props> = ({ data, onUpdate, onNext, onBack }) => {
                 id="phone"
                 value={data.phone}
                 onChange={handleChange}
-                className="w-full px-5 py-4 border-2 border-gray-700 rounded-lg focus:ring-2 focus:ring-white focus:border-white transition-all duration-200 bg-gray-900 bg-opacity-50 text-white placeholder-gray-500"
+                className="w-full px-5 py-4 border-2 border-black rounded-lg focus:ring-2 focus:ring-white focus:border-white transition-all duration-200 bg-black bg-opacity-50 text-black placeholder-gray-500"
                 placeholder="+49 123 456789"
               />
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-3 uppercase tracking-wider">
+              <label htmlFor="email" className="block text-sm font-medium text-black mb-3 uppercase tracking-wider">
                 E-Mail
               </label>
               <input
@@ -82,14 +82,14 @@ const ContactForm: React.FC<Props> = ({ data, onUpdate, onNext, onBack }) => {
                 id="email"
                 value={data.email}
                 onChange={handleChange}
-                className="w-full px-5 py-4 border-2 border-gray-700 rounded-lg focus:ring-2 focus:ring-white focus:border-white transition-all duration-200 bg-gray-900 bg-opacity-50 text-white placeholder-gray-500"
+                className="w-full px-5 py-4 border-2 border-black rounded-lg focus:ring-2 focus:ring-white focus:border-white transition-all duration-200 bg-black bg-opacity-50 text-black placeholder-gray-500"
                 placeholder="info@beispiel.de"
               />
             </div>
           </div>
 
           <div>
-            <label htmlFor="website" className="block text-sm font-medium text-gray-300 mb-3 uppercase tracking-wider">
+            <label htmlFor="website" className="block text-sm font-medium text-black mb-3 uppercase tracking-wider">
               Website
             </label>
             <input
@@ -98,13 +98,13 @@ const ContactForm: React.FC<Props> = ({ data, onUpdate, onNext, onBack }) => {
               id="website"
               value={data.website}
               onChange={handleChange}
-              className="w-full px-5 py-4 border-2 border-gray-700 rounded-lg focus:ring-2 focus:ring-white focus:border-white transition-all duration-200 bg-gray-900 bg-opacity-50 text-white placeholder-gray-500"
+              className="w-full px-5 py-4 border-2 border-black rounded-lg focus:ring-2 focus:ring-white focus:border-white transition-all duration-200 bg-black bg-opacity-50 text-black placeholder-gray-500"
               placeholder="https://www.meine-firma.de"
             />
           </div>
 
           <div>
-            <label htmlFor="social_media" className="block text-sm font-medium text-gray-300 mb-3 uppercase tracking-wider">
+            <label htmlFor="social_media" className="block text-sm font-medium text-black mb-3 uppercase tracking-wider">
               Social Media Links
             </label>
             <input
@@ -113,16 +113,16 @@ const ContactForm: React.FC<Props> = ({ data, onUpdate, onNext, onBack }) => {
               id="social_media"
               value={data.social_media}
               onChange={handleChange}
-              className="w-full px-5 py-4 border-2 border-gray-700 rounded-lg focus:ring-2 focus:ring-white focus:border-white transition-all duration-200 bg-gray-900 bg-opacity-50 text-white placeholder-gray-500"
+              className="w-full px-5 py-4 border-2 border-black rounded-lg focus:ring-2 focus:ring-white focus:border-white transition-all duration-200 bg-black bg-opacity-50 text-black placeholder-gray-500"
               placeholder="LinkedIn, Instagram, Facebook..."
             />
           </div>
         </div>
 
-        <div className="flex justify-between mt-10 pt-6 border-t border-gray-800">
+        <div className="flex justify-between mt-10 pt-6 border-t border-black">
           <button
             onClick={onBack}
-            className="px-6 py-3 text-sm font-light text-gray-400 hover:text-white transition-colors duration-200 tracking-wide"
+            className="px-6 py-3 text-sm font-light text-black hover:text-black transition-colors duration-200 tracking-wide"
           >
             Zurück
           </button>
@@ -132,8 +132,8 @@ const ContactForm: React.FC<Props> = ({ data, onUpdate, onNext, onBack }) => {
             disabled={!isFormValid}
             className={`px-8 py-3 text-sm font-light tracking-wide transition-all duration-300 transform hover:-translate-y-0.5 uppercase ${
               !isFormValid
-                ? 'bg-gray-800 text-gray-500 cursor-not-allowed transform-none border border-gray-700'
-                : 'bg-white text-[#1a1a1a] hover:bg-gray-200'
+                ? 'bg-black text-black cursor-not-allowed transform-none border border-black'
+                : 'bg-black text-white hover:bg-black'
             }`}
           >
             Weiter zum Onboarding

@@ -173,11 +173,11 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
   }, []);
 
   return (
-    <div className="bg-[#1a1a1a] min-h-screen relative">
+    <div className="bg-[#ff4500] min-h-screen relative">
       {/* Scroll Progress Indicator */}
-      <div className="fixed top-0 left-0 right-0 h-1 bg-gray-800 z-50">
+      <div className="fixed top-0 left-0 right-0 h-1 bg-black z-50">
         <div 
-          className="h-full bg-white transition-all duration-150 ease-out"
+          className="h-full bg-black transition-all duration-150 ease-out"
           style={{ width: `${scrollProgress}%` }}
         />
       </div>
@@ -195,14 +195,14 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
         {/* Animated Background Glows - sehr subtil */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div 
-            className="absolute top-1/4 left-1/4 w-96 h-96 bg-white rounded-full blur-3xl"
+            className="absolute top-1/4 left-1/4 w-96 h-96 bg-black rounded-full blur-3xl"
             style={{
               opacity: 0.02,
               transform: `translate(${scrollY * 0.2}px, ${scrollY * 0.3}px) scale(${1 + scrollY * 0.0002})`
             }}
           />
           <div 
-            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white rounded-full blur-3xl"
+            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-black rounded-full blur-3xl"
             style={{
               opacity: 0.02,
               transform: `translate(${-scrollY * 0.2}px, ${-scrollY * 0.3}px) scale(${1 + scrollY * 0.0002})`
@@ -235,13 +235,13 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
               flex={false}
               stroke={false}
               scale={false}
-              textColor="#FFFFFF"
+              textColor="#000000"
               minFontSize={48}
               className="text-6xl md:text-8xl lg:text-9xl font-light tracking-tight leading-none"
             />
           </div>
           <p 
-            className="text-xl md:text-2xl lg:text-3xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-12 md:mb-16 font-light"
+            className="text-xl md:text-2xl lg:text-3xl text-black max-w-3xl mx-auto leading-relaxed mb-12 md:mb-16 font-light"
             style={{
               transform: `translateY(${scrollY * 0.2}px)`,
               opacity: Math.max(0, 1 - scrollY * 0.003),
@@ -250,7 +250,7 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
             Innovative KI-Lösungen, die Ihr Unternehmen voranbringen
           </p>
           <p 
-            className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed mb-12 md:mb-16"
+            className="text-base md:text-lg text-black max-w-2xl mx-auto leading-relaxed mb-12 md:mb-16"
             style={{
               transform: `translateY(${scrollY * 0.25}px)`,
               opacity: Math.max(0, 1 - scrollY * 0.004),
@@ -262,7 +262,7 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
           {/* Scroll Indicator */}
           <button
             onClick={scrollToProducts}
-            className="group flex flex-col items-center gap-2 text-gray-400 hover:text-white transition-colors duration-300 animate-gentle-bounce relative z-10"
+            className="group flex flex-col items-center gap-2 text-black hover:text-black transition-colors duration-300 animate-gentle-bounce relative z-10"
             style={{
               opacity: Math.max(0, 1 - scrollY * 0.008),
               transform: `translateY(${scrollY * 0.3}px)`,
@@ -283,15 +283,15 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
       </section>
 
       {/* Header mit Button oben rechts - Sticky */}
-      <header className="bg-[#1a1a1a] bg-opacity-95 backdrop-blur-sm border-b border-gray-800 sticky top-0 z-30 relative">
+      <header className="bg-[#ff4500] bg-opacity-95 backdrop-blur-sm border-b border-black sticky top-0 z-30 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-end">
           <button
             onClick={handleStartOnboarding}
             disabled={!selectedProduct}
             className={`px-6 py-2.5 text-sm font-medium tracking-wide rounded-sm transition-all duration-300 transform uppercase ${
               selectedProduct
-                ? 'bg-white hover:bg-gray-200 text-[#1a1a1a] shadow-sm hover:shadow-md hover:-translate-y-0.5'
-                : 'bg-gray-800 text-gray-500 cursor-not-allowed transform-none border border-gray-700'
+                ? 'bg-black hover:bg-black text-black shadow-sm hover:shadow-md hover:-translate-y-0.5'
+                : 'bg-black text-black cursor-not-allowed transform-none border border-black'
             }`}
           >
             Onboarding starten
@@ -304,10 +304,10 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
 
         {/* Section Title */}
         <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-4 tracking-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-black mb-4 tracking-tight">
             Unsere Lösungen
           </h2>
-          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-black max-w-2xl mx-auto">
             Wählen Sie die KI-Lösung, die am besten zu Ihrem Unternehmen passt
           </p>
         </div>
@@ -319,17 +319,17 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
             return (
               <div
                 key={product.id}
-                className={`relative bg-gray-900 bg-opacity-50 backdrop-blur-sm border-2 rounded-lg p-8 transition-all duration-300 cursor-pointer animate-fade-in hover:border-white hover:bg-opacity-70 ${
+                className={`relative bg-[#ff4500] bg-opacity-50 backdrop-blur-sm border-2 rounded-lg p-8 transition-all duration-300 cursor-pointer animate-fade-in hover:border-black hover:bg-opacity-70 ${
                   isSelected 
-                    ? 'border-white bg-opacity-80' 
-                    : 'border-gray-700'
+                    ? 'border-black bg-opacity-80' 
+                    : 'border-black'
                 }`}
                 style={{ animationDelay: `${index * 0.1}s` }}
                 onClick={() => handleProductSelect(product.id)}
               >
                 {isSelected && (
-                  <div className="absolute top-4 right-4 w-6 h-6 bg-white rounded-full flex items-center justify-center">
-                    <svg className="w-4 h-4 text-[#1a1a1a]" fill="currentColor" viewBox="0 0 20 20">
+                  <div className="absolute top-4 right-4 w-6 h-6 bg-black rounded-full flex items-center justify-center">
+                    <svg className="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
                   </div>
@@ -338,7 +338,7 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
                 {/* Icon */}
                 <div className="flex justify-center mb-6">
                   <div className={`w-24 h-24 flex items-center justify-center transition-transform duration-300 hover:scale-110 ${
-                    isSelected ? 'text-white' : 'text-gray-400'
+                    isSelected ? 'text-black' : 'text-black'
                   }`}>
                     <product.icon />
                   </div>
@@ -346,10 +346,10 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
 
                 {/* Content */}
                 <div>
-                  <h3 className="text-2xl font-light text-white mb-4 tracking-tight">
+                  <h3 className="text-2xl font-light text-black mb-4 tracking-tight">
                     {product.title}
                   </h3>
-                  <p className="text-sm text-gray-400 mb-6 leading-relaxed">
+                  <p className="text-sm text-black mb-6 leading-relaxed">
                     {product.description}
                   </p>
 
@@ -357,8 +357,8 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
                   <div className="space-y-2 mb-4">
                     {product.benefits.slice(0, 2).map((benefit, i) => (
                       <div key={i} className="flex items-start gap-2">
-                        <span className="text-white mt-1 flex-shrink-0">✓</span>
-                        <span className="text-gray-300 text-xs leading-relaxed">{benefit}</span>
+                        <span className="text-black mt-1 flex-shrink-0">✓</span>
+                        <span className="text-black text-xs leading-relaxed">{benefit}</span>
                       </div>
                     ))}
                   </div>
@@ -370,12 +370,12 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
       </section>
 
       {/* CTA Section unten */}
-      <section className="border-t border-gray-800 py-16 relative z-10">
+      <section className="border-t border-black py-16 relative z-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl md:text-3xl font-light text-white mb-6 tracking-tight">
+          <h2 className="text-2xl md:text-3xl font-light text-black mb-6 tracking-tight">
             Bereit für Ihre individuelle Lösung?
           </h2>
-          <p className="text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-black mb-8 max-w-2xl mx-auto leading-relaxed">
             Starten Sie jetzt das Onboarding und finden Sie die perfekte KI-Lösung für Ihr Unternehmen.
           </p>
           <button
@@ -383,8 +383,8 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
             disabled={!selectedProduct}
             className={`px-10 py-4 text-sm font-medium tracking-wide rounded-sm transition-all duration-300 transform uppercase ${
               selectedProduct
-                ? 'bg-white hover:bg-gray-200 text-[#1a1a1a] hover:shadow-md hover:-translate-y-0.5'
-                : 'bg-gray-800 text-gray-500 cursor-not-allowed transform-none border border-gray-700'
+                ? 'bg-black hover:bg-black text-black hover:shadow-md hover:-translate-y-0.5'
+                : 'bg-black text-black cursor-not-allowed transform-none border border-black'
             }`}
           >
             {selectedProduct ? 'Onboarding starten' : 'Bitte wählen Sie ein Produkt'}

@@ -27,12 +27,12 @@ const LiquidEther: React.FC = () => {
       
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Create gradient background
+      // Create gradient background - warm/red
       const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-      gradient.addColorStop(0, 'rgba(26, 26, 26, 0.95)');
-      gradient.addColorStop(0.3, 'rgba(30, 30, 30, 0.9)');
-      gradient.addColorStop(0.6, 'rgba(26, 26, 26, 0.95)');
-      gradient.addColorStop(1, 'rgba(20, 20, 20, 0.9)');
+      gradient.addColorStop(0, 'rgba(255, 69, 0, 0.95)');
+      gradient.addColorStop(0.3, 'rgba(255, 100, 0, 0.9)');
+      gradient.addColorStop(0.6, 'rgba(255, 69, 0, 0.95)');
+      gradient.addColorStop(1, 'rgba(255, 50, 0, 0.9)');
       
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -59,9 +59,9 @@ const LiquidEther: React.FC = () => {
       ctx.closePath();
       
       const blob1Gradient = ctx.createRadialGradient(blob1X, blob1Y, 0, blob1X, blob1Y, blob1Radius);
-      blob1Gradient.addColorStop(0, 'rgba(255, 255, 255, 0.03)');
-      blob1Gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.015)');
-      blob1Gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      blob1Gradient.addColorStop(0, 'rgba(0, 0, 0, 0.03)');
+      blob1Gradient.addColorStop(0.5, 'rgba(0, 0, 0, 0.015)');
+      blob1Gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
       ctx.fillStyle = blob1Gradient;
       ctx.fill();
 
