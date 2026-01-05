@@ -23,13 +23,12 @@ const StepIndicator: React.FC<Props> = ({ currentStep, totalSteps, categoryName 
           </span>
         </div>
       </div>
-      <div className="overflow-hidden h-0.5 mb-6 text-xs flex bg-black">
+      <div className="overflow-hidden h-1 mb-6 text-xs flex bg-black">
         <div
           style={{ width: `${percentage}%` }}
           className="shadow-none flex flex-col text-center whitespace-nowrap text-black justify-center bg-black transition-all duration-500 ease-out"
         ></div>
       </div>
-      <h2 className="text-2xl font-light text-black tracking-wide">{categoryName}</h2>
     </div>
   );
 };
