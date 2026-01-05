@@ -292,8 +292,8 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
             disabled={!selectedProduct}
             className={`px-6 py-2.5 text-sm font-medium tracking-wide rounded-sm transition-all duration-300 transform uppercase ${
               selectedProduct
-                ? 'bg-black hover:bg-black text-black shadow-sm hover:shadow-md hover:-translate-y-0.5'
-                : 'bg-black text-black cursor-not-allowed transform-none border border-black'
+                ? 'bg-white hover:bg-white text-[#ff4500] shadow-sm hover:shadow-md hover:-translate-y-0.5'
+                : 'bg-white text-[#ff4500] cursor-not-allowed transform-none border border-[#ff4500] opacity-50'
             }`}
           >
             Onboarding starten
@@ -385,8 +385,8 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
             disabled={!selectedProduct}
             className={`px-10 py-4 text-sm font-medium tracking-wide rounded-sm transition-all duration-300 transform uppercase ${
               selectedProduct
-                ? 'bg-black hover:bg-black text-black hover:shadow-md hover:-translate-y-0.5'
-                : 'bg-black text-black cursor-not-allowed transform-none border border-black'
+                ? 'bg-white hover:bg-white text-[#ff4500] hover:shadow-md hover:-translate-y-0.5'
+                : 'bg-white text-[#ff4500] cursor-not-allowed transform-none border border-[#ff4500] opacity-50'
             }`}
           >
             {selectedProduct ? 'Onboarding starten' : 'Bitte wählen Sie ein Produkt'}

@@ -145,19 +145,19 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
                     onClick={() => handleOptionSelect(option)}
                     className={`w-full text-left p-4 border-2 rounded-lg transition-all duration-200 ${
                       isSelected
-                        ? 'border-white bg-black text-white'
-                        : 'border-black bg-black bg-opacity-30 text-black hover:border-black hover:text-black'
+                        ? 'border-[#ff4500] bg-white text-[#ff4500]'
+                        : 'border-[#ff4500] bg-white text-[#ff4500] hover:border-[#ff4500] hover:bg-white'
                     }`}
                   >
                     <div className="flex items-center gap-3">
                       {isMultiple && (
                         <div className={`w-5 h-5 border-2 rounded-sm flex items-center justify-center flex-shrink-0 ${
                           isSelected
-                            ? 'border-[#1a1a1a] bg-[#ff4500]'
-                            : 'border-black bg-transparent'
+                            ? 'border-[#ff4500] bg-[#ff4500]'
+                            : 'border-[#ff4500] bg-transparent'
                         }`}>
                           {isSelected && (
-                            <svg className="w-3 h-3 text-black" fill="currentColor" viewBox="0 0 20 20">
+                            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                               <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                             </svg>
                           )}
@@ -189,7 +189,7 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
                     });
                   }}
                   placeholder="z.B. Gastronomie, Handwerk, etc."
-                  className="w-full p-4 border-2 border-black rounded-lg focus:ring-2 focus:ring-white focus:border-white transition-all duration-200 text-black bg-black bg-opacity-50 placeholder-gray-500"
+                  className="w-full p-4 border-2 border-[#ff4500] rounded-lg focus:ring-2 focus:ring-[#ff4500] focus:border-[#ff4500] transition-all duration-200 text-[#ff4500] bg-white placeholder-gray-400"
                   autoFocus
                 />
               </div>
@@ -200,7 +200,7 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
             value={currentValue}
             onChange={handleChange}
             placeholder={currentQuestion.placeholder || "Ihre Antwort..."}
-            className="w-full h-40 p-5 border-2 border-black rounded-lg focus:ring-2 focus:ring-white focus:border-white transition-all duration-200 resize-none text-black leading-relaxed bg-black bg-opacity-50 placeholder-gray-500"
+            className="w-full h-40 p-5 border-2 border-[#ff4500] rounded-lg focus:ring-2 focus:ring-[#ff4500] focus:border-[#ff4500] transition-all duration-200 resize-none text-[#ff4500] leading-relaxed bg-white placeholder-gray-400"
             autoFocus
           />
         )}
@@ -231,8 +231,8 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
               (isMultiple
                 ? !selectedValues || selectedValues.length < 1
                 : !currentValue || (typeof currentValue === 'string' && currentValue.length < 1))
-                ? 'bg-black text-black cursor-not-allowed transform-none border border-black'
-                : 'bg-black text-white hover:bg-black'
+                ? 'bg-white text-[#ff4500] cursor-not-allowed transform-none border border-[#ff4500] opacity-50'
+                : 'bg-white text-[#ff4500] hover:bg-white'
             }`}
           >
             {isLastQuestion ? 'Absenden' : 'Weiter'}

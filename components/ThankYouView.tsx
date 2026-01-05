@@ -58,8 +58,8 @@ const ThankYouView: React.FC<Props> = ({ formData, contactData, onReset }) => {
             disabled={isSubmitting}
             className={`px-12 py-4 text-sm font-light tracking-wide transition-all duration-300 transform hover:-translate-y-0.5 uppercase ${
               isSubmitting
-                ? 'bg-black text-black cursor-not-allowed transform-none border border-black'
-                : 'bg-black text-white hover:bg-black'
+                ? 'bg-white text-[#ff4500] cursor-not-allowed transform-none border border-[#ff4500] opacity-50'
+                : 'bg-white text-[#ff4500] hover:bg-white'
             }`}
           >
             {isSubmitting ? 'Wird gesendet...' : 'Absenden'}
@@ -70,7 +70,7 @@ const ThankYouView: React.FC<Props> = ({ formData, contactData, onReset }) => {
           <div className="mb-6 flex justify-center">
             <button
               onClick={() => setShowAbout(true)}
-              className="px-8 py-3 text-xs font-light bg-black text-white hover:bg-black transition-colors duration-200 tracking-wide uppercase"
+              className="px-8 py-3 text-xs font-light bg-white text-[#ff4500] hover:bg-white transition-colors duration-200 tracking-wide uppercase"
             >
               Lern uns kennen
             </button>
@@ -127,7 +127,7 @@ const ThankYouView: React.FC<Props> = ({ formData, contactData, onReset }) => {
                 <div className="pt-4 border-t border-black">
                   <button
                     onClick={() => setShowAbout(false)}
-                    className="px-8 py-3 text-xs font-light bg-black text-white hover:bg-black transition-colors duration-200 tracking-wide uppercase"
+                    className="px-8 py-3 text-xs font-light bg-white text-[#ff4500] hover:bg-white transition-colors duration-200 tracking-wide uppercase"
                   >
                     Schließen
                   </button>
@@ -157,15 +157,15 @@ const ThankYouView: React.FC<Props> = ({ formData, contactData, onReset }) => {
                 disabled={isSubmitting}
                 className={`px-8 py-3 text-xs font-light tracking-wide uppercase transition-colors duration-200 ${
                   isSubmitting
-                    ? 'bg-black text-black cursor-not-allowed border border-black'
-                    : 'bg-black text-white hover:bg-black'
+                    ? 'bg-white text-[#ff4500] cursor-not-allowed border border-[#ff4500] opacity-50'
+                    : 'bg-white text-[#ff4500] hover:bg-white'
                 }`}
               >
                 {isSubmitting ? 'Wird gesendet...' : 'Erneut versuchen'}
               </button>
               <button
                 onClick={onReset}
-                className="px-8 py-3 text-xs font-light text-black border border-black hover:bg-black hover:border-black transition-colors duration-200 tracking-wide uppercase"
+                className="px-8 py-3 text-xs font-light text-[#ff4500] border border-[#ff4500] hover:bg-white hover:border-[#ff4500] transition-colors duration-200 tracking-wide uppercase bg-white"
               >
                 Neu starten
               </button>
