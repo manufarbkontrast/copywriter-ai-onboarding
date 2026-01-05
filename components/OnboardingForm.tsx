@@ -112,14 +112,14 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
       />
 
       <div 
-        className={`bg-white border border-black rounded-lg p-6 sm:p-10 transition-opacity duration-300 transform ${isAnimating ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}
+        className={`bg-[#ff4500] border border-black rounded-lg p-6 sm:p-10 transition-opacity duration-300 transform ${isAnimating ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}
       >
-        <h3 className="text-xl sm:text-2xl font-light text-black mb-8 leading-tight">
+        <h3 className="text-xl sm:text-2xl font-light text-[#ff4500] mb-8 leading-tight">
           {currentQuestion.label}
         </h3>
         
         {currentQuestion.context && (
-          <div className="bg-white border-l-2 border-black p-4 mb-6 rounded">
+          <div className="bg-black bg-opacity-50 border-l-2 border-black p-4 mb-6 rounded">
             <p className="text-sm text-black font-light">
                <span className="font-normal text-black">Hinweis:</span> {currentQuestion.context}
             </p>
@@ -141,8 +141,8 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
                     onClick={() => handleOptionSelect(option)}
                     className={`w-full text-left p-4 border border-black rounded-lg transition-all duration-200 ${
                       isSelected
-                        ? 'border-black bg-white text-black'
-                        : 'border-black bg-white text-black hover:border-black hover:bg-white'
+                        ? 'border-black bg-[#ff4500] text-black'
+                        : 'border-black bg-[#ff4500] text-black hover:border-black'
                     }`}
                   >
                     <div className="flex items-center gap-3">
@@ -185,7 +185,7 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
                     });
                   }}
                   placeholder="z.B. Gastronomie, Handwerk, etc."
-                  className="w-full p-4 border border-black rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 text-black bg-white placeholder-gray-500"
+                  className="w-full p-4 border border-black rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 text-black bg-black bg-opacity-50 placeholder-gray-400"
                   autoFocus
                 />
               </div>
@@ -196,7 +196,7 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
             value={currentValue}
             onChange={handleChange}
             placeholder={currentQuestion.placeholder || "Ihre Antwort..."}
-            className="w-full h-40 p-5 border border-black rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 resize-none text-black leading-relaxed bg-white placeholder-gray-500"
+            className="w-full h-40 p-5 border border-black rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 resize-none text-black leading-relaxed bg-black bg-opacity-50 placeholder-gray-400"
             autoFocus
           />
         )}
@@ -205,10 +205,10 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
           <button
             onClick={handlePrev}
             disabled={currentQuestionIndex === 0}
-            className={`px-6 py-3 text-sm font-light tracking-wide transition-colors duration-200 ${
+            className={`px-6 py-3 text-sm font-light tracking-wide transition-colors duration-200 border border-black ${
               currentQuestionIndex === 0
-                ? 'text-black cursor-not-allowed opacity-50'
-                : 'text-black hover:text-black'
+                ? 'text-black cursor-not-allowed opacity-50 bg-[#ff4500]'
+                : 'text-black hover:text-black bg-[#ff4500]'
             }`}
           >
             Zurück
@@ -227,8 +227,8 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
               (isMultiple
                 ? !selectedValues || selectedValues.length < 1
                 : !currentValue || (typeof currentValue === 'string' && currentValue.length < 1))
-                ? 'bg-white text-black cursor-not-allowed transform-none border border-black opacity-50'
-                : 'bg-white text-black border border-black hover:bg-white'
+                ? 'bg-[#ff4500] text-black cursor-not-allowed transform-none border border-black opacity-100'
+                : 'bg-[#ff4500] text-black border border-black hover:bg-[#ff4500]'
             }`}
           >
             {isLastQuestion ? 'Absenden' : 'Weiter'}

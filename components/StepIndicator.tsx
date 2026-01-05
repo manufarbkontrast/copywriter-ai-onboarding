@@ -13,7 +13,7 @@ const StepIndicator: React.FC<Props> = ({ currentStep, totalSteps, categoryName 
     <div className="w-full mb-8">
       <div className="flex justify-between items-end mb-3">
         <div>
-          <span className="text-xs font-light inline-block py-1 px-2 uppercase tracking-widest text-black border border-black rounded">
+          <span className="text-xs font-light inline-block py-1 px-2 uppercase tracking-widest text-[#ff4500] border border-black rounded">
             Fortschritt
           </span>
         </div>

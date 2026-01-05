@@ -18,9 +18,9 @@ const ContactForm: React.FC<Props> = ({ data, onUpdate, onNext, onBack }) => {
 
   return (
     <div className="max-w-2xl mx-auto w-full px-4 sm:px-6 py-8">
-      <div className="bg-white border border-black rounded-lg p-6 sm:p-10 animate-fade-in">
+      <div className="bg-[#ff4500] border border-black rounded-lg p-6 sm:p-10 animate-fade-in">
         <div className="mb-10 border-b border-black pb-6">
-          <h2 className="text-2xl font-light text-black tracking-wide mb-3">Kontaktdaten</h2>
+          <h2 className="text-2xl font-light text-[#ff4500] tracking-wide mb-3">Kontaktdaten</h2>
           <p className="text-sm text-black font-light">Bitte gib zuerst deine Kontaktdaten ein.</p>
         </div>
 
@@ -36,7 +36,7 @@ const ContactForm: React.FC<Props> = ({ data, onUpdate, onNext, onBack }) => {
               required
               value={data.name}
               onChange={handleChange}
-              className="w-full px-5 py-4 border border-black rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 bg-white text-black placeholder-gray-500"
+              className="w-full px-5 py-4 border border-black rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 bg-black bg-opacity-50 text-black placeholder-gray-400"
               placeholder="z.B. Acme GmbH oder Max Mustermann"
             />
           </div>
@@ -51,7 +51,7 @@ const ContactForm: React.FC<Props> = ({ data, onUpdate, onNext, onBack }) => {
               id="address"
               value={data.address}
               onChange={handleChange}
-              className="w-full px-5 py-4 border border-black rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 bg-white text-black placeholder-gray-500"
+              className="w-full px-5 py-4 border border-black rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 bg-black bg-opacity-50 text-black placeholder-gray-400"
               placeholder="Musterstraße 1, 12345 Berlin"
             />
           </div>
@@ -67,7 +67,7 @@ const ContactForm: React.FC<Props> = ({ data, onUpdate, onNext, onBack }) => {
                 id="phone"
                 value={data.phone}
                 onChange={handleChange}
-                className="w-full px-5 py-4 border border-black rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 bg-white text-black placeholder-gray-500"
+                className="w-full px-5 py-4 border border-black rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 bg-black bg-opacity-50 text-black placeholder-gray-400"
                 placeholder="+49 123 456789"
               />
             </div>
@@ -82,7 +82,7 @@ const ContactForm: React.FC<Props> = ({ data, onUpdate, onNext, onBack }) => {
                 id="email"
                 value={data.email}
                 onChange={handleChange}
-                className="w-full px-5 py-4 border border-black rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 bg-white text-black placeholder-gray-500"
+                className="w-full px-5 py-4 border border-black rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 bg-black bg-opacity-50 text-black placeholder-gray-400"
                 placeholder="info@beispiel.de"
               />
             </div>
@@ -98,7 +98,7 @@ const ContactForm: React.FC<Props> = ({ data, onUpdate, onNext, onBack }) => {
               id="website"
               value={data.website}
               onChange={handleChange}
-              className="w-full px-5 py-4 border border-black rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 bg-white text-black placeholder-gray-500"
+              className="w-full px-5 py-4 border border-black rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 bg-black bg-opacity-50 text-black placeholder-gray-400"
               placeholder="https://www.meine-firma.de"
             />
           </div>
@@ -113,7 +113,7 @@ const ContactForm: React.FC<Props> = ({ data, onUpdate, onNext, onBack }) => {
               id="social_media"
               value={data.social_media}
               onChange={handleChange}
-              className="w-full px-5 py-4 border border-black rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 bg-white text-black placeholder-gray-500"
+              className="w-full px-5 py-4 border border-black rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 bg-black bg-opacity-50 text-black placeholder-gray-400"
               placeholder="LinkedIn, Instagram, Facebook..."
             />
           </div>
@@ -132,8 +132,8 @@ const ContactForm: React.FC<Props> = ({ data, onUpdate, onNext, onBack }) => {
             disabled={!isFormValid}
             className={`px-8 py-3 text-sm font-light tracking-wide transition-all duration-300 transform hover:-translate-y-0.5 uppercase border border-black ${
               !isFormValid
-                ? 'bg-white text-black cursor-not-allowed transform-none opacity-50'
-                : 'bg-white text-black hover:bg-white'
+                ? 'bg-[#ff4500] text-black cursor-not-allowed transform-none opacity-100'
+                : 'bg-[#ff4500] text-black hover:bg-[#ff4500]'
             }`}
           >
             Weiter zum Onboarding
