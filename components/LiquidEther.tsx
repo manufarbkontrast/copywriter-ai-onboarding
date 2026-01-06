@@ -27,12 +27,12 @@ const LiquidEther: React.FC = () => {
       
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Create gradient background - warm/red
+      // Create gradient background - white
       const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-      gradient.addColorStop(0, 'rgba(255, 69, 0, 0.95)');
-      gradient.addColorStop(0.3, 'rgba(255, 100, 0, 0.9)');
-      gradient.addColorStop(0.6, 'rgba(255, 69, 0, 0.95)');
-      gradient.addColorStop(1, 'rgba(255, 50, 0, 0.9)');
+      gradient.addColorStop(0, 'rgba(255, 255, 255, 0.95)');
+      gradient.addColorStop(0.3, 'rgba(255, 255, 255, 0.9)');
+      gradient.addColorStop(0.6, 'rgba(255, 255, 255, 0.95)');
+      gradient.addColorStop(1, 'rgba(255, 255, 255, 0.9)');
       
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
