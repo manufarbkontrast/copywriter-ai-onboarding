@@ -56,10 +56,10 @@ const ThankYouView: React.FC<Props> = ({ formData, contactData, onReset }) => {
           <button
             onClick={handleSubmit}
             disabled={isSubmitting}
-            className={`px-12 py-4 text-sm font-light tracking-wide transition-all duration-300 transform hover:-translate-y-0.5 uppercase ${
+            className={`px-12 py-4 text-sm font-light tracking-wide transition-all duration-300 transform hover:-translate-y-0.5 uppercase bg-[#ff4500] border border-black text-black ${
               isSubmitting
-                ? 'bg-white text-[#ff4500] cursor-not-allowed transform-none border border-[#ff4500] opacity-50'
-                : 'bg-white text-[#ff4500] hover:bg-white'
+                ? 'cursor-not-allowed transform-none opacity-50'
+                : 'hover:bg-[#ff4500]'
             }`}
           >
             {isSubmitting ? 'Wird gesendet...' : 'Absenden'}
@@ -70,7 +70,7 @@ const ThankYouView: React.FC<Props> = ({ formData, contactData, onReset }) => {
           <div className="mb-6 flex justify-center">
             <button
               onClick={() => setShowAbout(true)}
-              className="px-8 py-3 text-xs font-light bg-white text-[#ff4500] hover:bg-white transition-colors duration-200 tracking-wide uppercase"
+              className="px-8 py-3 text-xs font-light bg-[#ff4500] border border-black text-black hover:bg-[#ff4500] transition-colors duration-200 tracking-wide uppercase"
             >
               Lern uns kennen
             </button>
@@ -91,7 +91,7 @@ const ThankYouView: React.FC<Props> = ({ formData, contactData, onReset }) => {
                 <h2 className="text-2xl font-light text-black tracking-wide">Über FORCE4GOOD</h2>
                 <button
                   onClick={() => setShowAbout(false)}
-                  className="text-black hover:text-black transition-colors duration-200 text-2xl leading-none"
+                  className="w-8 h-8 flex items-center justify-center bg-[#ff4500] border border-black text-black hover:bg-[#ff4500] transition-colors duration-200 text-2xl leading-none rounded"
                 >
                   ×
                 </button>
@@ -127,7 +127,7 @@ const ThankYouView: React.FC<Props> = ({ formData, contactData, onReset }) => {
                 <div className="pt-4 border-t border-black">
                   <button
                     onClick={() => setShowAbout(false)}
-                    className="px-8 py-3 text-xs font-light bg-white text-[#ff4500] hover:bg-white transition-colors duration-200 tracking-wide uppercase"
+                    className="px-8 py-3 text-xs font-light bg-[#ff4500] border border-black text-black hover:bg-[#ff4500] transition-colors duration-200 tracking-wide uppercase"
                   >
                     Schließen
                   </button>
@@ -139,7 +139,7 @@ const ThankYouView: React.FC<Props> = ({ formData, contactData, onReset }) => {
 
         {submitStatus === 'error' && (
           <div className="mb-6">
-            <div className="bg-black bg-opacity-50 border border-black rounded-lg p-4 mb-4 text-left">
+            <div className="bg-[#ff4500] border border-black rounded-lg p-4 mb-4 text-left">
               <p className="text-xs text-black font-medium mb-1 uppercase tracking-wide">Fehler-Details:</p>
               <p className="text-sm text-black font-light">
                 Öffne die Browser-Konsole (F12 → Console) für detaillierte Fehlerinformationen.
@@ -155,17 +155,17 @@ const ThankYouView: React.FC<Props> = ({ formData, contactData, onReset }) => {
               <button
                 onClick={handleSubmit}
                 disabled={isSubmitting}
-                className={`px-8 py-3 text-xs font-light tracking-wide uppercase transition-colors duration-200 ${
+                className={`px-8 py-3 text-xs font-light tracking-wide uppercase transition-colors duration-200 bg-[#ff4500] border border-black text-black ${
                   isSubmitting
-                    ? 'bg-white text-[#ff4500] cursor-not-allowed border border-[#ff4500] opacity-50'
-                    : 'bg-white text-[#ff4500] hover:bg-white'
+                    ? 'cursor-not-allowed opacity-50'
+                    : 'hover:bg-[#ff4500]'
                 }`}
               >
                 {isSubmitting ? 'Wird gesendet...' : 'Erneut versuchen'}
               </button>
               <button
                 onClick={onReset}
-                className="px-8 py-3 text-xs font-light text-[#ff4500] border border-[#ff4500] hover:bg-white hover:border-[#ff4500] transition-colors duration-200 tracking-wide uppercase bg-white"
+                className="px-8 py-3 text-xs font-light bg-[#ff4500] border border-black text-black hover:bg-[#ff4500] transition-colors duration-200 tracking-wide uppercase"
               >
                 Neu starten
               </button>

@@ -122,7 +122,7 @@ const ContactForm: React.FC<Props> = ({ data, onUpdate, onNext, onBack }) => {
         <div className="flex justify-between mt-10 pt-6 border-t border-black">
           <button
             onClick={onBack}
-            className="px-6 py-3 text-sm font-light text-black hover:text-black transition-colors duration-200 tracking-wide"
+            className="px-6 py-3 text-sm font-light bg-[#ff4500] border border-black text-black hover:bg-[#ff4500] transition-colors duration-200 tracking-wide"
           >
             Zurück
           </button>
@@ -130,10 +130,10 @@ const ContactForm: React.FC<Props> = ({ data, onUpdate, onNext, onBack }) => {
           <button
             onClick={onNext}
             disabled={!isFormValid}
-            className={`px-8 py-3 text-sm font-light tracking-wide transition-all duration-300 transform hover:-translate-y-0.5 uppercase ${
+            className={`px-8 py-3 text-sm font-light tracking-wide transition-all duration-300 transform hover:-translate-y-0.5 uppercase bg-[#ff4500] border border-black text-black ${
               !isFormValid
-                ? 'bg-black text-black cursor-not-allowed transform-none border border-black'
-                : 'bg-black text-white hover:bg-black'
+                ? 'cursor-not-allowed transform-none opacity-50'
+                : 'hover:bg-[#ff4500]'
             }`}
           >
             Weiter zum Onboarding

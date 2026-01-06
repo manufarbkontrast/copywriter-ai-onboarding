@@ -264,7 +264,7 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
           {/* Scroll Indicator */}
           <button
             onClick={scrollToProducts}
-            className="group flex flex-col items-center gap-2 text-black hover:text-black transition-colors duration-300 animate-gentle-bounce relative z-10"
+            className="group flex flex-col items-center gap-2 bg-[#ff4500] border border-black text-black hover:bg-[#ff4500] transition-colors duration-300 animate-gentle-bounce relative z-10 px-6 py-3 rounded"
             style={{
               opacity: Math.max(0, 1 - scrollY * 0.008),
               transform: `translateY(${scrollY * 0.3}px)`,
@@ -383,10 +383,10 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
           <button
             onClick={handleStartOnboarding}
             disabled={!selectedProduct}
-            className={`px-10 py-4 text-sm font-medium tracking-wide rounded-sm transition-all duration-300 transform uppercase ${
+            className={`px-10 py-4 text-sm font-medium tracking-wide rounded-sm transition-all duration-300 transform uppercase bg-[#ff4500] border border-black text-black ${
               selectedProduct
-                ? 'bg-black hover:bg-black text-black hover:shadow-md hover:-translate-y-0.5'
-                : 'bg-black text-black cursor-not-allowed transform-none border border-black'
+                ? 'hover:bg-[#ff4500] hover:-translate-y-0.5'
+                : 'cursor-not-allowed transform-none opacity-50'
             }`}
           >
             {selectedProduct ? 'Onboarding starten' : 'Bitte wählen Sie ein Produkt'}

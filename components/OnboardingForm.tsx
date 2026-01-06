@@ -112,14 +112,18 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
       />
 
       <div 
-        className={`bg-[#ff4500] border border-black rounded-lg p-6 sm:p-10 transition-opacity duration-300 transform ${isAnimating ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}
+        className={`bg-[#ff4500] backdrop-blur-sm border border-black rounded-lg p-6 sm:p-10 transition-opacity duration-300 transform ${isAnimating ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}
       >
-        <h3 className="text-xl sm:text-2xl font-light text-[#ff4500] mb-8 leading-tight">
+        <div className="mb-4">
+           <span className="text-xs text-black font-medium uppercase tracking-widest">{currentQuestion.goal}</span>
+        </div>
+        
+        <h3 className="text-2xl sm:text-3xl font-light text-black mb-8 leading-tight">
           {currentQuestion.label}
         </h3>
         
         {currentQuestion.context && (
-          <div className="bg-black bg-opacity-50 border-l-2 border-black p-4 mb-6 rounded">
+          <div className="bg-[#ff4500] border-l-2 border-black p-4 mb-6 rounded">
             <p className="text-sm text-black font-light">
                <span className="font-normal text-black">Hinweis:</span> {currentQuestion.context}
             </p>
@@ -139,21 +143,21 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
                     key={index}
                     type="button"
                     onClick={() => handleOptionSelect(option)}
-                    className={`w-full text-left p-4 border border-black rounded-lg transition-all duration-200 ${
+                    className={`w-full text-left p-4 border-2 rounded-lg transition-all duration-200 ${
                       isSelected
                         ? 'border-black bg-[#ff4500] text-black'
-                        : 'border-black bg-[#ff4500] text-black hover:border-black'
+                        : 'border-black bg-[#ff4500] text-black hover:border-black hover:text-black'
                     }`}
                   >
                     <div className="flex items-center gap-3">
                       {isMultiple && (
-                        <div className={`w-5 h-5 border-2 border-black rounded-sm flex items-center justify-center flex-shrink-0 ${
+                        <div className={`w-5 h-5 border-2 rounded-sm flex items-center justify-center flex-shrink-0 ${
                           isSelected
-                            ? 'bg-black'
-                            : 'bg-transparent'
+                            ? 'border-black bg-[#ff4500]'
+                            : 'border-black bg-transparent'
                         }`}>
                           {isSelected && (
-                            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <svg className="w-3 h-3 text-black" fill="currentColor" viewBox="0 0 20 20">
                               <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                             </svg>
                           )}
@@ -185,7 +189,7 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
                     });
                   }}
                   placeholder="z.B. Gastronomie, Handwerk, etc."
-                  className="w-full p-4 border border-black rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 text-black bg-black bg-opacity-50 placeholder-gray-400"
+                  className="w-full p-4 border-2 border-black rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 text-black bg-[#ff4500] placeholder-gray-700"
                   autoFocus
                 />
               </div>
@@ -196,7 +200,7 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
             value={currentValue}
             onChange={handleChange}
             placeholder={currentQuestion.placeholder || "Ihre Antwort..."}
-            className="w-full h-40 p-5 border border-black rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 resize-none text-black leading-relaxed bg-black bg-opacity-50 placeholder-gray-400"
+            className="w-full h-40 p-5 border-2 border-black rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 resize-none text-black leading-relaxed bg-[#ff4500] placeholder-gray-700"
             autoFocus
           />
         )}
@@ -205,10 +209,10 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
           <button
             onClick={handlePrev}
             disabled={currentQuestionIndex === 0}
-            className={`px-6 py-3 text-sm font-light tracking-wide transition-colors duration-200 border border-black ${
+            className={`px-6 py-3 text-sm font-light tracking-wide transition-colors duration-200 bg-[#ff4500] border border-black text-black ${
               currentQuestionIndex === 0
-                ? 'text-black cursor-not-allowed opacity-50 bg-[#ff4500]'
-                : 'text-black hover:text-black bg-[#ff4500]'
+                ? 'cursor-not-allowed opacity-50'
+                : 'hover:bg-[#ff4500]'
             }`}
           >
             Zurück
@@ -223,12 +227,12 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
                   (currentQuestion.id === 'hero_identity' && currentValue === 'Andere Branche' && 
                    (!data.hero_identity || typeof data.hero_identity === 'string' && !data.hero_identity.includes(':')))
             }
-            className={`px-8 py-3 text-sm font-light tracking-wide transition-all duration-300 transform hover:-translate-y-0.5 uppercase ${
+            className={`px-8 py-3 text-sm font-light tracking-wide transition-all duration-300 transform hover:-translate-y-0.5 uppercase bg-[#ff4500] border border-black text-black ${
               (isMultiple
                 ? !selectedValues || selectedValues.length < 1
                 : !currentValue || (typeof currentValue === 'string' && currentValue.length < 1))
-                ? 'bg-[#ff4500] text-black cursor-not-allowed transform-none border border-black opacity-100'
-                : 'bg-[#ff4500] text-black border border-black hover:bg-[#ff4500]'
+                ? 'cursor-not-allowed transform-none opacity-50'
+                : 'hover:bg-[#ff4500]'
             }`}
           >
             {isLastQuestion ? 'Absenden' : 'Weiter'}
@@ -236,6 +240,9 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
         </div>
       </div>
       
+      <div className="mt-6 text-center text-xs text-black tracking-wide">
+        Frage {currentQuestionIndex + 1} von {filteredQuestions.length}
+      </div>
     </div>
   );
 };
