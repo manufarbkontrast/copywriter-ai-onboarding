@@ -145,25 +145,23 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
                     onClick={() => handleOptionSelect(option)}
                     className={`w-full text-left p-4 border-2 rounded-lg transition-all duration-200 ${
                       isSelected
-                        ? 'border-black bg-[#ff4500] text-black'
-                        : 'border-black bg-[#ff4500] text-black hover:border-black hover:text-black'
+                        ? 'border-black bg-[#ff4500] text-black shadow-lg ring-2 ring-black ring-offset-2 ring-offset-[#ff4500]'
+                        : 'border-black bg-[#ff4500] text-black hover:border-black hover:text-black opacity-70'
                     }`}
                   >
                     <div className="flex items-center gap-3">
-                      {isMultiple && (
-                        <div className={`w-5 h-5 border-2 rounded-sm flex items-center justify-center flex-shrink-0 ${
-                          isSelected
-                            ? 'border-black bg-[#ff4500]'
-                            : 'border-black bg-transparent'
-                        }`}>
-                          {isSelected && (
-                            <svg className="w-3 h-3 text-black" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                            </svg>
-                          )}
+                      {isSelected && (
+                        <div className="w-5 h-5 border-2 rounded-sm flex items-center justify-center flex-shrink-0 border-black bg-[#ff4500]">
+                          <svg className="w-3 h-3 text-black" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
                         </div>
                       )}
-                      <span className="font-light">{option}</span>
+                      {!isSelected && isMultiple && (
+                        <div className="w-5 h-5 border-2 rounded-sm flex items-center justify-center flex-shrink-0 border-black bg-transparent">
+                        </div>
+                      )}
+                      <span className={`font-light ${isSelected ? 'font-medium' : ''}`}>{option}</span>
                     </div>
                   </button>
                 );
@@ -189,7 +187,11 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
                     });
                   }}
                   placeholder="z.B. Gastronomie, Handwerk, etc."
-                  className="w-full p-4 border-2 border-black rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 text-black bg-[#ff4500] placeholder-gray-700"
+                  className={`w-full p-4 border-2 rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 text-black bg-[#ff4500] placeholder-gray-700 ${
+                    typeof data.hero_identity === 'string' && data.hero_identity.includes(':') && data.hero_identity.replace('Andere Branche: ', '')
+                      ? 'border-black shadow-lg ring-2 ring-black ring-offset-2 ring-offset-[#ff4500]'
+                      : 'border-black'
+                  }`}
                   autoFocus
                 />
               </div>
@@ -200,7 +202,11 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
             value={currentValue}
             onChange={handleChange}
             placeholder={currentQuestion.placeholder || "Ihre Antwort..."}
-            className="w-full h-40 p-5 border-2 border-black rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 resize-none text-black leading-relaxed bg-[#ff4500] placeholder-gray-700"
+            className={`w-full h-40 p-5 border-2 rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 resize-none text-black leading-relaxed bg-[#ff4500] placeholder-gray-700 ${
+              currentValue && currentValue.toString().length > 0
+                ? 'border-black shadow-lg ring-2 ring-black ring-offset-2 ring-offset-[#ff4500]'
+                : 'border-black'
+            }`}
             autoFocus
           />
         )}
