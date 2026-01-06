@@ -41,7 +41,7 @@ const ThankYouView: React.FC<Props> = ({ formData, contactData, onReset }) => {
 
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#ff4500] p-4">
+    <div className="min-h-screen flex items-center justify-center bg-white p-4">
       <div className="max-w-2xl w-full text-center animate-fade-in">
         <div className="mb-8">
           <h1 className="text-4xl md:text-5xl font-light text-black mb-4 tracking-wide">
@@ -56,10 +56,10 @@ const ThankYouView: React.FC<Props> = ({ formData, contactData, onReset }) => {
           <button
             onClick={handleSubmit}
             disabled={isSubmitting}
-            className={`px-12 py-4 text-sm font-light tracking-wide transition-all duration-300 transform hover:-translate-y-0.5 uppercase bg-[#ff4500] border border-black text-black ${
+            className={`px-12 py-4 text-sm font-light tracking-wide transition-all duration-300 transform hover:-translate-y-0.5 uppercase bg-white border border-black text-black ${
               isSubmitting
                 ? 'cursor-not-allowed transform-none opacity-50'
-                : 'hover:bg-[#ff4500]'
+                : 'hover:bg-white'
             }`}
           >
             {isSubmitting ? 'Wird gesendet...' : 'Absenden'}
@@ -70,7 +70,7 @@ const ThankYouView: React.FC<Props> = ({ formData, contactData, onReset }) => {
           <div className="mb-6 flex justify-center">
             <button
               onClick={() => setShowAbout(true)}
-              className="px-8 py-3 text-xs font-light bg-[#ff4500] border border-black text-black hover:bg-[#ff4500] transition-colors duration-200 tracking-wide uppercase"
+              className="px-8 py-3 text-xs font-light bg-white border border-black text-black hover:bg-white transition-colors duration-200 tracking-wide uppercase"
             >
               Lern uns kennen
             </button>
@@ -91,7 +91,7 @@ const ThankYouView: React.FC<Props> = ({ formData, contactData, onReset }) => {
                 <h2 className="text-2xl font-light text-black tracking-wide">Über FORCE4GOOD</h2>
                 <button
                   onClick={() => setShowAbout(false)}
-                  className="w-8 h-8 flex items-center justify-center bg-[#ff4500] border border-black text-black hover:bg-[#ff4500] transition-colors duration-200 text-2xl leading-none rounded"
+                  className="w-8 h-8 flex items-center justify-center bg-white border border-black text-black hover:bg-white transition-colors duration-200 text-2xl leading-none rounded"
                 >
                   ×
                 </button>
@@ -127,7 +127,7 @@ const ThankYouView: React.FC<Props> = ({ formData, contactData, onReset }) => {
                 <div className="pt-4 border-t border-black">
                   <button
                     onClick={() => setShowAbout(false)}
-                    className="px-8 py-3 text-xs font-light bg-[#ff4500] border border-black text-black hover:bg-[#ff4500] transition-colors duration-200 tracking-wide uppercase"
+                    className="px-8 py-3 text-xs font-light bg-white border border-black text-black hover:bg-white transition-colors duration-200 tracking-wide uppercase"
                   >
                     Schließen
                   </button>
@@ -139,7 +139,7 @@ const ThankYouView: React.FC<Props> = ({ formData, contactData, onReset }) => {
 
         {submitStatus === 'error' && (
           <div className="mb-6">
-            <div className="bg-[#ff4500] border border-black rounded-lg p-4 mb-4 text-left">
+            <div className="bg-white border border-black rounded-lg p-4 mb-4 text-left">
               <p className="text-xs text-black font-medium mb-1 uppercase tracking-wide">Fehler-Details:</p>
               <p className="text-sm text-black font-light">
                 Öffne die Browser-Konsole (F12 → Console) für detaillierte Fehlerinformationen.
@@ -155,17 +155,17 @@ const ThankYouView: React.FC<Props> = ({ formData, contactData, onReset }) => {
               <button
                 onClick={handleSubmit}
                 disabled={isSubmitting}
-                className={`px-8 py-3 text-xs font-light tracking-wide uppercase transition-colors duration-200 bg-[#ff4500] border border-black text-black ${
+                className={`px-8 py-3 text-xs font-light tracking-wide uppercase transition-colors duration-200 bg-white border border-black text-black ${
                   isSubmitting
                     ? 'cursor-not-allowed opacity-50'
-                    : 'hover:bg-[#ff4500]'
+                    : 'hover:bg-white'
                 }`}
               >
                 {isSubmitting ? 'Wird gesendet...' : 'Erneut versuchen'}
               </button>
               <button
                 onClick={onReset}
-                className="px-8 py-3 text-xs font-light bg-[#ff4500] border border-black text-black hover:bg-[#ff4500] transition-colors duration-200 tracking-wide uppercase"
+                className="px-8 py-3 text-xs font-light bg-white border border-black text-black hover:bg-white transition-colors duration-200 tracking-wide uppercase"
               >
                 Neu starten
               </button>

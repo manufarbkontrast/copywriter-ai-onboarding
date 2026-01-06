@@ -31,13 +31,13 @@ const AnalysisView: React.FC<Props> = ({ result, contactData, onReset }) => {
         <div className="flex gap-3 w-full md:w-auto">
             <button 
                 onClick={copyToClipboard}
-                className="flex-1 md:flex-none px-5 py-2.5 bg-[#ff4500] border border-black text-black hover:bg-[#ff4500] rounded-lg text-xs font-light tracking-wide transition-all duration-200 uppercase"
+                className="flex-1 md:flex-none px-5 py-2.5 bg-white border border-black text-black hover:bg-white rounded-lg text-xs font-light tracking-wide transition-all duration-200 uppercase"
             >
                 JSON Exportieren
             </button>
             <button 
                 onClick={onReset}
-                className="px-5 py-2.5 bg-[#ff4500] border border-black text-black hover:bg-[#ff4500] rounded-lg text-xs font-light tracking-wide transition-all duration-200 uppercase"
+                className="px-5 py-2.5 bg-white border border-black text-black hover:bg-white rounded-lg text-xs font-light tracking-wide transition-all duration-200 uppercase"
             >
                 Neu
             </button>

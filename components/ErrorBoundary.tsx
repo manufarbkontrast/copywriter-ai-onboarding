@@ -31,7 +31,7 @@ class ErrorBoundary extends Component<Props, State> {
   render(): ReactNode {
     if (this.state.hasError) {
       return this.props.fallback || (
-        <div className="min-h-screen flex items-center justify-center bg-[#ff4500] p-4">
+        <div className="min-h-screen flex items-center justify-center bg-white p-4">
           <div className="max-w-md text-center">
             <h2 className="text-2xl font-light text-black mb-4">Etwas ist schiefgelaufen</h2>
             <p className="text-sm text-black mb-6">
@@ -39,7 +39,7 @@ class ErrorBoundary extends Component<Props, State> {
             </p>
             <button
               onClick={() => window.location.reload()}
-              className="px-6 py-3 bg-[#ff4500] border border-black text-black text-sm font-light tracking-wide rounded-lg hover:bg-[#ff4500] transition-colors duration-200 uppercase"
+              className="px-6 py-3 bg-white border border-black text-black text-sm font-light tracking-wide rounded-lg hover:bg-white transition-colors duration-200 uppercase"
             >
               Seite neu laden
             </button>

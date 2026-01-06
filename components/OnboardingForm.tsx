@@ -112,7 +112,7 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
       />
 
       <div 
-        className={`bg-[#ff4500] backdrop-blur-sm border border-black rounded-lg p-6 sm:p-10 transition-opacity duration-300 transform ${isAnimating ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}
+        className={`bg-white backdrop-blur-sm border border-black rounded-lg p-6 sm:p-10 transition-opacity duration-300 transform ${isAnimating ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}
       >
         <div className="mb-4">
            <span className="text-xs text-black font-medium uppercase tracking-widest">{currentQuestion.goal}</span>
@@ -123,7 +123,7 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
         </h3>
         
         {currentQuestion.context && (
-          <div className="bg-[#ff4500] border-l-2 border-black p-4 mb-6 rounded">
+          <div className="bg-white border-l-2 border-black p-4 mb-6 rounded">
             <p className="text-sm text-black font-light">
                <span className="font-normal text-black">Hinweis:</span> {currentQuestion.context}
             </p>
@@ -145,13 +145,13 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
                     onClick={() => handleOptionSelect(option)}
                     className={`w-full text-left p-4 border-2 rounded-lg transition-all duration-200 ${
                       isSelected
-                        ? 'border-black bg-[#ff4500] text-black shadow-lg ring-2 ring-black ring-offset-2 ring-offset-[#ff4500]'
-                        : 'border-black bg-[#ff4500] text-black hover:border-black hover:text-black opacity-70'
+                        ? 'border-black bg-white text-black shadow-lg ring-2 ring-black ring-offset-2 ring-offset-white'
+                        : 'border-black bg-white text-black hover:border-black hover:text-black opacity-70'
                     }`}
                   >
                     <div className="flex items-center gap-3">
                       {isSelected && (
-                        <div className="w-5 h-5 border-2 rounded-sm flex items-center justify-center flex-shrink-0 border-black bg-[#ff4500]">
+                        <div className="w-5 h-5 border-2 rounded-sm flex items-center justify-center flex-shrink-0 border-black bg-white">
                           <svg className="w-3 h-3 text-black" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                           </svg>
@@ -187,11 +187,12 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
                     });
                   }}
                   placeholder="z.B. Gastronomie, Handwerk, etc."
-                  className={`w-full p-4 border-2 rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 text-black bg-[#ff4500] placeholder-gray-700 ${
+                  className={`w-full p-4 border-2 rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 text-black bg-white placeholder-gray-700 autofill:text-black autofill:bg-white ${
                     typeof data.hero_identity === 'string' && data.hero_identity.includes(':') && data.hero_identity.replace('Andere Branche: ', '')
-                      ? 'border-black shadow-lg ring-2 ring-black ring-offset-2 ring-offset-[#ff4500]'
+                      ? 'border-black shadow-lg ring-2 ring-black ring-offset-2 ring-offset-white'
                       : 'border-black'
                   }`}
+                  style={{ color: '#000000' }}
                   autoFocus
                 />
               </div>
@@ -202,11 +203,12 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
             value={currentValue}
             onChange={handleChange}
             placeholder={currentQuestion.placeholder || "Ihre Antwort..."}
-            className={`w-full h-40 p-5 border-2 rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 resize-none text-black leading-relaxed bg-[#ff4500] placeholder-gray-700 ${
+            className={`w-full h-40 p-5 border-2 rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 resize-none text-black leading-relaxed bg-white placeholder-gray-700 ${
               currentValue && currentValue.toString().length > 0
-                ? 'border-black shadow-lg ring-2 ring-black ring-offset-2 ring-offset-[#ff4500]'
+                ? 'border-black shadow-lg ring-2 ring-black ring-offset-2 ring-offset-white'
                 : 'border-black'
             }`}
+            style={{ color: '#000000' }}
             autoFocus
           />
         )}
@@ -215,10 +217,10 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
           <button
             onClick={handlePrev}
             disabled={currentQuestionIndex === 0}
-            className={`px-6 py-3 text-sm font-light tracking-wide transition-colors duration-200 bg-[#ff4500] border border-black text-black ${
+            className={`px-6 py-3 text-sm font-light tracking-wide transition-colors duration-200 bg-white border border-black text-black ${
               currentQuestionIndex === 0
                 ? 'cursor-not-allowed opacity-50'
-                : 'hover:bg-[#ff4500]'
+                : 'hover:bg-white'
             }`}
           >
             Zurück
@@ -233,12 +235,12 @@ const OnboardingForm: React.FC<Props> = ({ data, onUpdate, onSubmit }) => {
                   (currentQuestion.id === 'hero_identity' && currentValue === 'Andere Branche' && 
                    (!data.hero_identity || typeof data.hero_identity === 'string' && !data.hero_identity.includes(':')))
             }
-            className={`px-8 py-3 text-sm font-light tracking-wide transition-all duration-300 transform hover:-translate-y-0.5 uppercase bg-[#ff4500] border border-black text-black ${
+            className={`px-8 py-3 text-sm font-light tracking-wide transition-all duration-300 transform hover:-translate-y-0.5 uppercase bg-white border border-black text-black ${
               (isMultiple
                 ? !selectedValues || selectedValues.length < 1
                 : !currentValue || (typeof currentValue === 'string' && currentValue.length < 1))
                 ? 'cursor-not-allowed transform-none opacity-50'
-                : 'hover:bg-[#ff4500]'
+                : 'hover:bg-white'
             }`}
           >
             {isLastQuestion ? 'Absenden' : 'Weiter'}

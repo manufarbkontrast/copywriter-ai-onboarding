@@ -173,7 +173,7 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
   }, []);
 
   return (
-    <div className="bg-[#ff4500] min-h-screen relative">
+    <div className="bg-white min-h-screen relative">
       {/* Scroll Progress Indicator */}
       <div className="fixed top-0 left-0 right-0 h-1 bg-black z-50">
         <div 
@@ -264,7 +264,7 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
           {/* Scroll Indicator */}
           <button
             onClick={scrollToProducts}
-            className="group flex flex-col items-center gap-2 bg-[#ff4500] border border-black text-black hover:bg-[#ff4500] transition-colors duration-300 animate-gentle-bounce relative z-10 px-6 py-3 rounded"
+            className="group flex flex-col items-center gap-2 bg-white border border-black text-black hover:bg-white transition-colors duration-300 animate-gentle-bounce relative z-10 px-6 py-3 rounded"
             style={{
               opacity: Math.max(0, 1 - scrollY * 0.008),
               transform: `translateY(${scrollY * 0.3}px)`,
@@ -285,7 +285,7 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
       </section>
 
       {/* Header mit Button oben rechts - Sticky */}
-      <header className="bg-[#ff4500] bg-opacity-95 backdrop-blur-sm border-b border-black sticky top-0 z-30 relative">
+      <header className="bg-white bg-opacity-95 backdrop-blur-sm border-b border-black sticky top-0 z-30 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-end">
           <button
             onClick={handleStartOnboarding}
@@ -321,7 +321,7 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
             return (
               <div
                 key={product.id}
-                className={`relative bg-[#ff4500] bg-opacity-50 backdrop-blur-sm border-2 rounded-lg p-8 transition-all duration-300 cursor-pointer animate-fade-in hover:border-black hover:bg-opacity-70 ${
+                className={`relative bg-white bg-opacity-50 backdrop-blur-sm border-2 rounded-lg p-8 transition-all duration-300 cursor-pointer animate-fade-in hover:border-black hover:bg-opacity-70 ${
                   isSelected 
                     ? 'border-black bg-opacity-80' 
                     : 'border-black'
@@ -383,9 +383,9 @@ const ProductPage: React.FC<Props> = ({ onStartOnboarding }) => {
           <button
             onClick={handleStartOnboarding}
             disabled={!selectedProduct}
-            className={`px-10 py-4 text-sm font-medium tracking-wide rounded-sm transition-all duration-300 transform uppercase bg-[#ff4500] border border-black text-black ${
+            className={`px-10 py-4 text-sm font-medium tracking-wide rounded-sm transition-all duration-300 transform uppercase bg-white border border-black text-black ${
               selectedProduct
-                ? 'hover:bg-[#ff4500] hover:-translate-y-0.5'
+                ? 'hover:bg-white hover:-translate-y-0.5'
                 : 'cursor-not-allowed transform-none opacity-50'
             }`}
           >
