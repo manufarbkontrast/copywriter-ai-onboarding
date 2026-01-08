@@ -56,25 +56,30 @@ Value: random-name-12345.netlify.app
 
 ---
 
-## Option 2: Vercel
+## Option 2: Docker mit Nginx
 
 ### Schritt 1: Domain kaufen (siehe oben)
 
-### Schritt 2: Projekt auf Vercel deployen
+### Schritt 2: Docker Container deployen
 ```bash
-vercel login
-vercel
-vercel --prod
+docker-compose -f docker-compose.prod.yml up -d --build
 ```
 
-### Schritt 3: Custom Domain hinzufügen
-1. Gehe zu: **Project Settings → Domains**
-2. Klicke auf: **Add Domain**
-3. Gib deine Domain ein
-4. Folge den DNS-Anweisungen
+### Schritt 3: SSL-Zertifikate konfigurieren
+1. SSL-Zertifikate in `nginx/ssl/` ablegen:
+   - `cert.pem` - Zertifikat
+   - `key.pem` - Private Key
+2. In `nginx.conf` HTTPS-Server aktivieren
+3. Container neu starten
 
 ### Schritt 4: DNS konfigurieren
-Vercel zeigt dir die benötigten DNS-Einträge an.
+Richte einen A-Record oder CNAME auf deine Server-IP ein:
+```
+Type: A
+Name: @ (oder onboarding)
+Value: [Deine Server-IP]
+TTL: 3600
+```
 
 ---
 
@@ -151,7 +156,7 @@ onboarding.force4good.de  CNAME  random-name-12345.netlify.app
 ## Kosten
 
 - **Domain**: ~10-15€/Jahr
-- **Hosting**: Kostenlos (Netlify/Vercel Free Tier)
+- **Hosting**: Docker auf eigenem Server oder Cloud-Provider
 - **SSL**: Kostenlos (automatisch)
 
 
