@@ -35,6 +35,39 @@ Eine minimalistisch gestaltete Onboarding-Anwendung im Schwarz-Weiß Design für
 
 Die Anwendung läuft dann auf `http://localhost:3000`
 
+## Docker Deployment (Empfohlen)
+
+### Schnellstart:
+
+1. **Environment-Variablen konfigurieren**:
+   Erstelle eine `.env` Datei:
+   ```env
+   VITE_N8N_WEBHOOK_URL=https://n8n.crftn.de/webhook/d194ad47-6e11-42df-93ce-bd789bf55cbd
+   VITE_N8N_CHATBOT_WEBHOOK_URL=https://n8n.crftn.de/webhook/chatbot
+   ```
+
+2. **Docker Compose starten**:
+   ```bash
+   docker-compose up -d --build
+   ```
+
+3. **Anwendung aufrufen**:
+   - App: http://localhost:3002
+   - Nginx: http://localhost:9000
+
+### Production mit Domain:
+
+Siehe [DOMAIN-SETUP.md](./DOMAIN-SETUP.md) für detaillierte Anleitung zur Domain-Einrichtung.
+
+### Docker Hub:
+
+Das Image ist verfügbar auf Docker Hub:
+```bash
+docker pull manufarbkontrast/force4good-onboarding:latest
+```
+
+Weitere Informationen: [DEPLOY.md](./DEPLOY.md) und [DOCKER.md](./DOCKER.md)
+
 ## Features
 
 - Minimalistisches Schwarz-Weiß Design
